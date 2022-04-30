@@ -1,7 +1,6 @@
 #include <mc9s12dp256.h>
 #include "stringIO.h"
 
-//**********************************************//
 //***Receiving and sending char functions***///
 
 //Outputting string char function
