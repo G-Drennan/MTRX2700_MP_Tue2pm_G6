@@ -6,13 +6,11 @@
 //Define the constant strings for the different kinds of commands
 const char outputCommand[] = "list";
 
-//**********************************************//
+
 //Define the strings to be output depending on inputs
 extern char outputMessage1[] = "This could be the list you are looking for\r\n";
-//extern char outputMessage2[] = "Or potentially outputs this message\r\n";
 extern char errorMessage1[] = "Invalid command\r\n";
 
-//**********************************************//
 //Compare input to command function
 char* commandFunction(char *inputString, int *wFpointer){
   
