@@ -1,5 +1,5 @@
 ## W9
-Developed idea 26/04/22
+Developed idea 26/04/22  
 Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming
 
 
