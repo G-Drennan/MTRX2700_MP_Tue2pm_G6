@@ -2,7 +2,7 @@
 Developed idea 26/04/22  
 Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming
 
-
+------------------------------------------------------------------------------------------------  
 Created outline of modules  1/05/22  
 Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming  
 Location: Discord   
@@ -17,6 +17,6 @@ The following modules were created in the meeting so to get things started:
 5. Interface GUI (input/output) & inventory storage (will be done by Giaan)
 6. Orientation of the sensor - including above and below shelf (will be done by Wei-Ming)
 
-
+------------------------------------------------------------------------------------------------  
 
 
