@@ -41,7 +41,7 @@ void outputInvatory(int list[3], int InvatoryLen){
     for(int n=0; n < InvatoryLen; n++){
 
         char *src1 = variableString(Tempstr0, &pos1, &n);
-        char *src2 = variableString(src1, &pos2, &InvatoryLen);
+        char *src2 = variableString(src1, &pos2, &list[n]); 
         strcat(dest, src2); 
     }
 
