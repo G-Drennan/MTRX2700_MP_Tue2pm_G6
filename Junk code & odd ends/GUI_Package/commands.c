@@ -5,7 +5,7 @@
 #include "commands.h"
 
 //Define the constant strings for the different kinds of commands
-const char outputCommand[] = "list";
+const char outputCommand[] = "list"; 
 
 //**********************************************//
 //Define the strings to be output depending on inputs
@@ -28,7 +28,9 @@ char num2char(int *n){
 char* variableString( char* string, int *position, int *n){
     string[*position] = num2char(n);
     return string; 
-}  
+}
+
+extern char dest[BUFFER] = "\n---------------------------------\n";   
 
 char* commandFunction(char *inputString, int *wFpointer){
     
@@ -38,14 +40,14 @@ char* commandFunction(char *inputString, int *wFpointer){
     int list[3] = {6,9,3};
     int InvatoryLen = sizeof(list)/sizeof(int); 
     
-    char dest[BUFFER] = "\n---------------------------------\n"; 
+     
     char Tempstr0[] = "item_X    X\n";
     char Tempstr1[16]; 
     
     int Tempstr0len = strlen(Tempstr0); 
     int pos1 = 5; 
     int pos2 = 10; 
-    char *src;
+    //char *src; 
     int n=0;   
     
     // list each item and its ammount
@@ -75,4 +77,4 @@ char* commandFunction(char *inputString, int *wFpointer){
     return errorMessage1; //Set the string location to the errorMessage
  
   }
-} 
+}   
