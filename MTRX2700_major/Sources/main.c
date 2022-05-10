@@ -13,6 +13,10 @@
 #include "servo.h"
 #include "laser.h"
 
+#include "functions.h"
+
+unsigned long laserValueArr[10];
+
 
 void printErrorCode(IIC_ERRORS error_code) {
   char buffer[128];  
@@ -57,9 +61,17 @@ void main(void) {
   
   IIC_ERRORS error_code = NO_ERROR;
   
-  char buffer[128];  
+  char buffer[128];
   
-  unsigned long singleSample;
+  
+  int i;
+    
+  unsigned long singleSample, avg;
+  
+  
+  for (i=0; i<10; i++) {
+   laserValueArr[i] = (unsigned long)i; 
+  }
   
   //assert(error_code != NO_ERROR);
 
@@ -71,7 +83,7 @@ void main(void) {
 
   // initialise PWM
   PWMinitialise();
-  //setServoPose(100, 100); FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
+  setServoPose(-750, -250); //FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
 
   #endif
   
@@ -109,11 +121,13 @@ void main(void) {
     #ifndef SIMULATION_TESTING
   
     // read the raw values
-  
-    
-    //error_code = getRawDataMagnet(&read_magnet);
-    
+      
     GetLatestLaserSample(&singleSample);
+    
+    // laser value array is declared
+    // fill out array in handleLaserValues function
+    
+    avg = handleLaserValues(singleSample, &laserValueArr[0]);
         
 
     #endif
