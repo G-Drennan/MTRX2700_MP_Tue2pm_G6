@@ -27,3 +27,8 @@ Meeting Purpose:
 Work on individual parts and also figure out how the lidar work, for the in-lab members.   
 
 -----------------------------------------------------------------------------------------------
+Created outline of modules  10/05/22  
+Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming  
+Location: Discord/Lab  
+
+Meeting Purpose:  
