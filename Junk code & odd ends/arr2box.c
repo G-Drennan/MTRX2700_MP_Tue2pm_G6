@@ -1,22 +1,21 @@
 #include <string.h>
 #include <stdio.h>
 
-typedef struct {
-    char name[100];
-    int amount;
-} item; 
+/*Code to create a variable output string that can be outputted in codewarroir 
+*/
+#define BUFFER 10000 
 
-void outputInvatory(int list[3], int len);
+char* outputInvatory(int list[3], int len);
 
-int main(){
+int main(){ 
     int list[3] = {6,9,3};
-    int len = sizeof(list)/sizeof(int);
+    int InvatoryLen = sizeof(list)/sizeof(int); 
     //printf("%lu\n", sizeof(list)/sizeof(int));
-    outputInvatory(list, len);
+    char *outputMessage = outputInvatory(list, InvatoryLen);   
+   printf("%s", outputMessage);   
+} 
 
-}
-
-//converts num n to char c
+//converts num n to char c 
 char num2char(int *n){
     char c = *n+'0';
     return c; 
@@ -26,10 +25,9 @@ char num2char(int *n){
 char* variableString( char* string, int *position, int *n){
     string[*position] = num2char(n);
     return string; 
-} 
+}  
 
-#define BUFFER 10000
-void outputInvatory(int list[3], int InvatoryLen){
+char* outputInvatory(int list[3], int InvatoryLen){ 
    
    char dest[BUFFER] = "\n---------------------------------\n", 
     Tempstr0[] = "item_X    X\n", Tempstr1[16];
@@ -42,11 +40,9 @@ void outputInvatory(int list[3], int InvatoryLen){
 
         char *src1 = variableString(Tempstr0, &pos1, &n);
         char *src2 = variableString(src1, &pos2, &list[n]); 
-        strcat(dest, src2); 
+        strcat(dest, src2);  
     }
 
     strcat(dest, "---------------------------------\n\n"); 
-
-    //output string to terminal  
-    //printf("%s", dest);   
+    return dest;    
 } 
