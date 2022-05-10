@@ -34,4 +34,7 @@ Location: Discord/Lab
 Meeting Purpose:  
 The problem faced by individuals were discussed. Some problems were resolved by the tutor while others will need to be look into in depth.  
 
+Common problem faced include:  
+- compiling error
+
 -----------------------------------------------------------------------------------------------
