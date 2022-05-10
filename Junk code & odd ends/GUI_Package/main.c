@@ -3,7 +3,7 @@
 #include <stdio.h>   
 #include <string.h>
 
-#include "commands.h"
+#include "commands.h" 
 #include "stringIO.h"
 #include "initialiseIO.h"
 
@@ -13,7 +13,6 @@ int *wFpointer = &writingFlag; //Pointer to the writing flag
  
 char inputArray[64]; //Allocated memory for incoming strings  
 int arrInLocation; //Location in array for incoming strings
-
 
 interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
 
@@ -25,7 +24,7 @@ interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
     //Increment char it points to
     currentOutputLocation++;  
     
-  } 
+  }  
   
   //Input 
   else if((*(SCI1.StatusRegister) & SCI1SR1_RDRF_MASK) && (writingFlag==0)){ 

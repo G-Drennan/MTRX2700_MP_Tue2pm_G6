@@ -1,30 +1,71 @@
 #include <mc9s12dp256.h>
 #include <string.h>
+#include <stdio.h> 
 
 #include "commands.h"
 
 //Define the constant strings for the different kinds of commands
 const char outputCommand[] = "list";
 
-
+//**********************************************//
 //Define the strings to be output depending on inputs
-extern char outputMessage1[] = "This could be the list you are looking for\r\n";
+#define BUFFER 10000
+extern char outputMessage1[BUFFER]; //= "This could be the list you are looking for\r\n"; 
+//extern char outputMessage2[] = "Or potentially outputs this message\r\n";
 extern char errorMessage1[] = "Invalid command\r\n";
 
+//**********************************************//
 //Compare input to command function
+void outputInvatory(int list[3], int InvatoryLen); 
+
+//converts num n to char c
+char num2char(int *n){
+    char c = *n+'0';
+    return c; 
+} 
+
+// places a desired number n in a string at a desired position 
+char* variableString( char* string, int *position, int *n){
+    string[*position] = num2char(n);
+    return string; 
+}  
+
 char* commandFunction(char *inputString, int *wFpointer){
-  
-  //Get the length of the input string
-  int len = strlen(inputString);  
+    
+    //Get the length of the input string
+    int len = strlen(inputString);  
+    
+    int list[3] = {6,9,3};
+    int InvatoryLen = sizeof(list)/sizeof(int); 
+    
+    char dest[BUFFER] = "\n---------------------------------\n"; 
+    char Tempstr0[] = "item_X    X\n";
+    char Tempstr1[16]; 
+    
+    int Tempstr0len = strlen(Tempstr0); 
+    int pos1 = 5; 
+    int pos2 = 10; 
+    char *src;
+    int n=0;   
+    
+    // list each item and its ammount
+    for(n; n < InvatoryLen; n++){ 
+
+        char *src1 = variableString(Tempstr0, &pos1, &n);
+        char *src2 = variableString(src1, &pos2, &list[n]); 
+        strcat(dest, src2);  
+    }
+
+    strcat(dest, "---------------------------------\n\n"); 
 
   //Output Command
   if(!strncmp(inputString, outputCommand, len-1)){
   
     //Set writing flag pointer to 1
-    *wFpointer = 1; //Turns on writing flag to ignore reading interrupts
+    *wFpointer = 1; //Turns on writing flag to ignore reading interrupts 
     
     //First message if parameter is 1
-    return outputMessage1; //Set the string location to the outputMessage1
+    return dest; //Set the string location to the outputMessage1 
     
   }
   //error message
@@ -34,4 +75,4 @@ char* commandFunction(char *inputString, int *wFpointer){
     return errorMessage1; //Set the string location to the errorMessage
  
   }
-}
+} 
