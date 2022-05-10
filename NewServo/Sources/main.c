@@ -10,7 +10,7 @@ void main(void) {
   /* put your own code here */
   PWMinitialise();
 
-  
+  //(start angle, end angle, steps)
   elevation(0, 90, 1);
   delay(100);
   elevation(90, 0, 1);
