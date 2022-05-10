@@ -5,7 +5,7 @@
 #include "commands.h"
 
 //Define the constant strings for the different kinds of commands
-const char outputCommand[] = "list"; 
+const char outputCommand[] = "list";
 
 //**********************************************//
 //Define the strings to be output depending on inputs
@@ -15,10 +15,9 @@ extern char outputMessage1[BUFFER]; //= "This could be the list you are looking 
 extern char errorMessage1[] = "Invalid command\r\n";
 
 //**********************************************//
-//Compare input to command function
-void outputInvatory(int list[3], int InvatoryLen); 
 
-//converts num n to char c
+
+//converts num n to char c 
 char num2char(int *n){
     char c = *n+'0';
     return c; 
@@ -30,28 +29,22 @@ char* variableString( char* string, int *position, int *n){
     return string; 
 }
 
-extern char dest[BUFFER] = "\n---------------------------------\n";   
+ char dest[BUFFER] = "\n---------------------------------\n";  
 
-char* commandFunction(char *inputString, int *wFpointer){
-    
-    //Get the length of the input string
-    int len = strlen(inputString);  
-    
-    int list[3] = {6,9,3};
-    int InvatoryLen = sizeof(list)/sizeof(int); 
-    
-     
+char* outputInvatory(int list[3], int InvatoryLen){ 
+   
+      
     char Tempstr0[] = "item_X    X\n";
     char Tempstr1[16]; 
     
-    int Tempstr0len = strlen(Tempstr0); 
-    int pos1 = 5; 
-    int pos2 = 10; 
-    //char *src; 
-    int n=0;   
+    int Tempstr0len = strlen(Tempstr0);
+    int pos1 = 5;
+    int pos2 = 10;
+    char *src;
+    int n=0; 
     
     // list each item and its ammount
-    for(n; n < InvatoryLen; n++){ 
+    for(n; n < InvatoryLen; n++){
 
         char *src1 = variableString(Tempstr0, &pos1, &n);
         char *src2 = variableString(src1, &pos2, &list[n]); 
@@ -59,15 +52,22 @@ char* commandFunction(char *inputString, int *wFpointer){
     }
 
     strcat(dest, "---------------------------------\n\n"); 
+    return dest;    
+} 
 
+char* commandFunction(char *inputString, int *wFpointer){
+    //Get the length of the input string
+    int len = strlen(inputString);
+    int list[3] = {1,2,3};
+    int InvatoryLen = sizeof(list)/sizeof(int);
   //Output Command
   if(!strncmp(inputString, outputCommand, len-1)){
-  
+     
     //Set writing flag pointer to 1
     *wFpointer = 1; //Turns on writing flag to ignore reading interrupts 
     
-    //First message if parameter is 1
-    return dest; //Set the string location to the outputMessage1 
+    //First message if parameter is 1 
+    return outputInvatory(list ,InvatoryLen); 
     
   }
   //error message
@@ -77,4 +77,4 @@ char* commandFunction(char *inputString, int *wFpointer){
     return errorMessage1; //Set the string location to the errorMessage
  
   }
-}   
+}  
