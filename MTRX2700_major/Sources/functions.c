@@ -4,8 +4,8 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
 
   int arrLen = 10;
   int i, avg;
-  for (i = (arrLen-2); i--; i>1) {
-    laserArr[i-1] = laserArr[i];
+  for (i = 0; i < arrLen; i++) {
+    laserArr[i] = laserArr[i+1];
   }
   
   laserArr[arrLen-1] = laserValue;
