@@ -63,6 +63,7 @@ void main(void) {
   
   char buffer[128];
   
+  //int currentAddress = 0;
   
   int i;
     
@@ -111,8 +112,12 @@ void main(void) {
   #endif
 
   Init_TC6();
-  
-	EnableInterrupts;
+	
+  //-----------------------------------------------------------------------------------------|
+  // build inventory (without amounts) using a text file of item names (in order of scanning)|
+  //-----------------------------------------------------------------------------------------|
+	
+  EnableInterrupts;
   //COPCTL = 7;
   _DISABLE_COP();
     
@@ -128,8 +133,19 @@ void main(void) {
     // fill out array in handleLaserValues function
     
     avg = handleLaserValues(singleSample, &laserValueArr[0]);
-        
-
+    
+    //-----------------------------------------------------------------------------------------|
+    // determine what has happened:                                                            |
+    //	  1) In same state (either same number of boxes or still in a gap state                |
+    //	  2) In a new state								       |
+    //-----------------------------------------------------------------------------------------| 
+    
+    //-----------------------------------------------------------------------------------------|
+    // if at a new address modify the number of boxes using the average			       |
+    //-----------------------------------------------------------------------------------------| 
+    
+    //currentAdress++; increment the address once the box number has been updated
+	  
     #endif
   
     
