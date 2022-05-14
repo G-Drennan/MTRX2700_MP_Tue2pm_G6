@@ -10,7 +10,7 @@ const char outputCommand[] = "list";
 //**********************************************//
 //Define the strings to be output depending on inputs
 #define BUFFER 10000
-extern char outputMessage1[BUFFER]; //= "This could be the list you are looking for\r\n"; 
+extern char *outputMessage1;//"\n---------------------------------\n" ; //= "This could be the list you are looking for\r\n"; 
 //extern char outputMessage2[] = "Or potentially outputs this message\r\n";
 extern char errorMessage1[] = "Invalid command\r\n";
 
@@ -29,20 +29,20 @@ char* variableString( char* string, int *position, int *n){
     return string; 
 }
 
- char dest[BUFFER] = "\n---------------------------------\n";  
-
-char* outputInvatory(int list[3], int InvatoryLen){ 
+char dest[BUFFER];
+char* outputInvatory(int list[3], int InvatoryLen){  
    
       
-    char Tempstr0[] = "item_X    X\n";
+    char Tempstr0[] = "|  item_X    X  ";
     char Tempstr1[16]; 
     
     int Tempstr0len = strlen(Tempstr0);
-    int pos1 = 5;
-    int pos2 = 10;
+    int pos1 = 8;
+    int pos2 = 13;  
     char *src;
     int n=0; 
-    
+    //strcat(dest, "\n---------------------------------\n");  
+   
     // list each item and its ammount
     for(n; n < InvatoryLen; n++){
 
@@ -51,23 +51,26 @@ char* outputInvatory(int list[3], int InvatoryLen){
         strcat(dest, src2);  
     }
 
-    strcat(dest, "---------------------------------\n\n"); 
-    return dest;    
+    strcat(dest, "\n");  
+    return dest;     
 } 
-
+    
 char* commandFunction(char *inputString, int *wFpointer){
     //Get the length of the input string
     int len = strlen(inputString);
-    int list[3] = {1,2,3};
-    int InvatoryLen = sizeof(list)/sizeof(int);
+    
   //Output Command
   if(!strncmp(inputString, outputCommand, len-1)){
-     
+      int list[3] = {1,2,3}; 
+      int InvatoryLen = sizeof(list)/sizeof(int);
+      
+     outputMessage1 = outputInvatory(list, InvatoryLen);  
     //Set writing flag pointer to 1
     *wFpointer = 1; //Turns on writing flag to ignore reading interrupts 
-    
+      
     //First message if parameter is 1 
-    return outputInvatory(list ,InvatoryLen); 
+    
+    return outputMessage1; //    
     
   }
   //error message
