@@ -12,6 +12,7 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
   
   max = 0;
   min = 10000;
+  avg = 0;
 
   for (i = 0; i < arrLen; i++) {
       if (laserArr[i] > max) {
@@ -32,5 +33,30 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
       avg = avg / arrLen;
     }
       
-    return avg;     
-}         
+    return avg;  
+    
+}
+
+void determineOccurence(int current_state, item** itemArray) {
+  
+  item* current_item;
+  
+  if (current_state = prev_state) {
+    // nothing has happened yet
+    continue;
+  }
+  else if (current_state == 0) {
+    // arrived at a gap state
+    prev_state = current_state;
+    item_address ++;
+    continue;
+  } 
+  else {
+    // arrived at a new box address, record number of boxes
+    prev_state = current_state;
+    //item* current_item = itemArray[current_state-1];
+    //modifyItem(current_item, );
+  }
+    
+}
+
