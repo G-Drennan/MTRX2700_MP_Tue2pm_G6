@@ -37,26 +37,34 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
     
 }
 
-void determineOccurence(int current_state, item** itemArray) {
-  
-  item* current_item;
-  
-  if (current_state = prev_state) {
+void determineOccurence(int current_state, int prev_state, item** itemArray, item* current_item) {
+      
+  if (current_state == prev_state) {
     // nothing has happened yet
-    continue;
   }
-  else if (current_state == 0) {
+  else if (current_state == 0 && current_state != prev_state) {
     // arrived at a gap state
     prev_state = current_state;
     item_address ++;
-    continue;
   } 
-  else {
+  else if (current_state != 0 && current_state != prev_state) {
     // arrived at a new box address, record number of boxes
     prev_state = current_state;
-    //item* current_item = itemArray[current_state-1];
-    //modifyItem(current_item, );
+    current_item->amount = current_state;
   }
     
 }
 
+void initialiseInventoryContents(item** itemArray) {
+  
+  item* current_item;
+  char* names[5] = {"item1", "item2", "item3", "item4","item5"};
+  int k = 0;
+  
+  for (k = 0; k < 5; k++) {
+    current_item = (item*)malloc(sizeof(item));
+    strcpy(current_item->name, names[k]);
+    itemArray[k] = current_item;
+      
+  }     
+}
