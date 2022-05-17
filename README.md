@@ -1,16 +1,18 @@
 # MTRX2700 Major Project
 
 ## Table of contents
-- [Group members](#group-members)
+- [Group Members](#group-members)
 - [output inventory list](#output-inventory-list)
 
 
 
 ## Group Members
-- 
-- 
-- 
-- 
+- Jack
+- Simran
+- Antonio
+- Giaan
+- Kazlani
+- Wei-Ming
 
 
 ## output inventory list
