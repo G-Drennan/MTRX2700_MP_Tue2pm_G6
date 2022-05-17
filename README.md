@@ -1,5 +1,18 @@
 # MTRX2700 Major Project
 
+## Table of contents
+- [Group members](#group-members)
+- [output inventory list](#output-inventory-list)
+
+
+
+## Group Members
+- 
+- 
+- 
+- 
+
+
 ## output inventory list
 output ends at a new line
 
