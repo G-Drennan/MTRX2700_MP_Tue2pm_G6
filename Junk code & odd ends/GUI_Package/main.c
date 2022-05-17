@@ -58,7 +58,7 @@ interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
 //Main
 void main(void){
 
-  SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port
+  SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
   DDRB = 0xFF; //Set the direction to output 
 	EnableInterrupts //Turn on interrupts
 
@@ -66,4 +66,4 @@ void main(void){
   for(;;) {
   
   } 
-}
+} 

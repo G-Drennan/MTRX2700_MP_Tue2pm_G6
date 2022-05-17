@@ -30,7 +30,7 @@ char* variableString( char* string, int *position, int *n){
 }
 
 char dest[BUFFER];
-char* outputInvatory(int list[3], int InvatoryLen){  
+char* outputInvatory(int *list, int InvatoryLen){   
    
       
     char Tempstr0[] = "|  item_X    X  ";
@@ -80,4 +80,4 @@ char* commandFunction(char *inputString, int *wFpointer){
     return errorMessage1; //Set the string location to the errorMessage
  
   }
-}  
+}      
