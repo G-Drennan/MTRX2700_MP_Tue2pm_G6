@@ -35,9 +35,9 @@ Meeting Purpose:
 The problem faced by individuals were discussed. Some problems were resolved by the tutor while others will need to be look into in depth.  
 
 Problem faced include:  
-- compiling error for GUI interfacing
-- broken code for laser array when it is defined in main instead of global 
-- logic issue when shift values used in array  
+- compiling error for GUI interfacing(fixed by Giaan)
+- broken code for laser array when it is defined in main instead of global(fixed by Jack) 
+- logic issue when shift values used in array(fixed by Jack)  
 
 ----------------------------------------------------------------------------------------------
 Created outline of modules  17/05/22  
