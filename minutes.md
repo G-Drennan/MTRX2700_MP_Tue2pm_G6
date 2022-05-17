@@ -34,7 +34,17 @@ Location: Discord/Lab
 Meeting Purpose:  
 The problem faced by individuals were discussed. Some problems were resolved by the tutor while others will need to be look into in depth.  
 
-Common problem faced include:  
-- compiling error
+Problem faced include:  
+- compiling error for GUI interfacing
+- broken code for laser array when it is defined in main instead of global 
+- logic issue when shift values used in array  
+
+----------------------------------------------------------------------------------------------
+Created outline of modules  17/05/22  
+Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming  
+Location: Discord/Lab   
+
+Meeting Purpose:  
+Work on individual parts and also figure out how the lidar work, for the in-lab members.   
 
 -----------------------------------------------------------------------------------------------
