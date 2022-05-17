@@ -12,11 +12,7 @@
 
 #include "servo.h"
 #include "laser.h"
-
 #include "functions.h"
-
-unsigned long laserValueArr[10];
-
 
 void printErrorCode(IIC_ERRORS error_code) {
   char buffer[128];  
@@ -62,9 +58,7 @@ void main(void) {
   IIC_ERRORS error_code = NO_ERROR;
   
   char buffer[128];
-  
-  //int currentAddress = 0;
-  
+    
   int i;
     
   unsigned long singleSample, avg;
@@ -112,12 +106,8 @@ void main(void) {
   #endif
 
   Init_TC6();
-	
-  //-----------------------------------------------------------------------------------------|
-  // build inventory (without amounts) using a text file of item names (in order of scanning)|
-  //-----------------------------------------------------------------------------------------|
-	
-  EnableInterrupts;
+    
+	EnableInterrupts;
   //COPCTL = 7;
   _DISABLE_COP();
     
@@ -134,18 +124,11 @@ void main(void) {
     
     avg = handleLaserValues(singleSample, &laserValueArr[0]);
     
-    //-----------------------------------------------------------------------------------------|
-    // determine what has happened:                                                            |
-    //	  1) In same state (either same number of boxes or still in a gap state                |
-    //	  2) In a new state								       |
-    //-----------------------------------------------------------------------------------------| 
+    if (avg != 0) {
+      current_state = (avg - shelf_distance) / box_depth;
+      
+    }
     
-    //-----------------------------------------------------------------------------------------|
-    // if at a new address modify the number of boxes using the average			       |
-    //-----------------------------------------------------------------------------------------| 
-    
-    //currentAdress++; increment the address once the box number has been updated
-	  
     #endif
   
     
