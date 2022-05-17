@@ -27,6 +27,28 @@ By treating each item location as a street address, the need to differentiate it
 
 The number of missing items at each location updates an inventory which can then be printed at the push of a button.
 
+## System Overview 
+The PTU used consists a Lidar sensor, 2 servo motors and an IMU. This will all be controlled using the Dragon 12 Board. To complete the task, the system is divided into 7 modules which includes:
+- Building inventory
+
+An inventory to store the number of items the sensor identified.
+- Obtaining laser values
+
+Laser values will be used to determine the distance from current possition to the object distance.
+- Filtering laser values
+
+Filter the laser values so to make it readable to all.
+- Using avg to determine the state/number of boxes
+
+Using the distance obtained to determine the number of items left. The depth of the shelf and box is constant, by knowing both these values, the total number of boxes can be obtained and hence knowing the amount of items being taken off the shelf.
+- Appropriately updating the inventory
+
+Constantly updating the user.
+- Initialising and controlling the servos
+
+Move the servo so to scane multiple rows and columns of the given shelf.
+- Integration and serial input/output 
+
 
 
 ## output inventory list
