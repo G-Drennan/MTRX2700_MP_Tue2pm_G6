@@ -3,7 +3,6 @@
 #include "derivative.h"      /* derivative-specific definitions */
 
 // need this for string functions
-#include <stdio.h>
 
 #include "pll.h"
 #include "simple_serial.h"
@@ -53,16 +52,28 @@ void printErrorCode(IIC_ERRORS error_code) {
   SerialOutputString(buffer, &SCI1);
 }
 
+unsigned long laserValueArr[10];
+
+// shelf parameters
+
+volatile int item_address = 1;
+
+// state parameters
+volatile int prev_state = 0; // start on a gap state
+volatile int current_state = 0;
+
 void main(void) {
   
   IIC_ERRORS error_code = NO_ERROR;
   
   char buffer[128];
     
-  int i;
+  int i, itemNumber, distanceDifference;
     
   unsigned long singleSample, avg;
   
+  item** itemArray;
+  item* current_item;
   
   for (i=0; i<10; i++) {
    laserValueArr[i] = (unsigned long)i; 
@@ -106,8 +117,17 @@ void main(void) {
   #endif
 
   Init_TC6();
-    
-	EnableInterrupts;
+	
+  //-----------------------------------------------------------------------------------------|
+  // build inventory (without amounts) using a text file of item names (in order of scanning)|
+  //-----------------------------------------------------------------------------------------|
+  
+  itemNumber = 5;
+  itemArray = (item**)malloc(sizeof(item*)*itemNumber);
+  
+  initialiseInventoryContents(itemArray);
+   	
+  EnableInterrupts;
   //COPCTL = 7;
   _DISABLE_COP();
     
@@ -123,12 +143,13 @@ void main(void) {
     // fill out array in handleLaserValues function
     
     avg = handleLaserValues(singleSample, &laserValueArr[0]);
-    
     if (avg != 0) {
-      current_state = (avg - shelf_distance) / box_depth;
-      
+      distanceDifference = avg - shelf_distance;
+      current_state = distanceDifference/box_depth;
+      current_item = itemArray[item_address-1];
+      determineOccurence(current_state, prev_state, itemArray, current_item);
     }
-    
+	  
     #endif
   
     
