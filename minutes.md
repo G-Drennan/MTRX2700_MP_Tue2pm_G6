@@ -45,6 +45,7 @@ Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming
 Location: Discord/Lab   
 
 Meeting Purpose:  
-Work on individual parts and also figure out how the lidar work, for the in-lab members.   
+Submit major project concept and discuss on the hardware intergration.  
+Obtaining and filtering laser values has completed, while the other modules are to be complete and check by this week.
 
 -----------------------------------------------------------------------------------------------
