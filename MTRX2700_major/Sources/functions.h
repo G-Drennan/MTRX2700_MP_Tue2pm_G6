@@ -1,29 +1,26 @@
-
-
 #ifndef FUNCTIONS_HEADER
 #define FUNCTIONS_HEADER
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct {
     char name[100];
     int amount;
 } item;
 
-unsigned long laserValueArr[10];
-int totalNumItems = 1;
+#define shelf_distance 1500;
+#define back_shelf_distance 2000;
+#define box_depth 100;
 
-// shelf parameters
-int shelf_distance = 1500;
-int back_shelf_distance = 2000;
-int box_depth = 100;
-int item_address = 1;
-
-// state parameters
-int prev_state = 0; // start on a gap state
-int current_state;
+extern volatile int item_address;
+extern volatile int prev_state;
+extern volatile int current_state;
 
 unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserArr);
-void dermineOccurence(int current_state, item** itemArray);
-
+void determineOccurence(int current_state, int prev_state, item** itemArray, item* current_item);
+void initialiseInventoryContents(item** itemArray);
 
 #endif
-                                        
+                           
