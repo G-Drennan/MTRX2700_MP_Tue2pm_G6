@@ -3,6 +3,7 @@
 ## Table of contents
 - [Group Members](#group-members)
 - [Project Outline](#project-outline)
+- [System Overview](#system-overview)
 - [output inventory list](#output-inventory-list)
 
 
