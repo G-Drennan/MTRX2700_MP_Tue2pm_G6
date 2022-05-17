@@ -7,6 +7,7 @@
 
 
 ## Group Members
+Group 6 members:  
 - Jack
 - Simran
 - Antonio
