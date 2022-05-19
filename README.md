@@ -59,7 +59,7 @@ Move the servo so to scane multiple rows and columns of the given shelf.
 3. Start the PTU by power it with a power socket.   
 
 ### Setting up the Software 
-Launch CodeWarrior 
+Launch CodeWarrior   
 Open MTRX_2700_major.mcp  
 
 ### Setting up the Serial Terminal  
