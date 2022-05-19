@@ -54,12 +54,17 @@ interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
   }
 }
 
+interrupt 25 void Hbutton_ISR(){
+    SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
+    DDRB = 0xFF; //Set the direction to output  
+}
+
 
 //Main
 void main(void){
 
-  SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
-  DDRB = 0xFF; //Set the direction to output 
+  //SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
+  //DDRB = 0xFF; //Set the direction to output   
 	EnableInterrupts //Turn on interrupts
 
 
