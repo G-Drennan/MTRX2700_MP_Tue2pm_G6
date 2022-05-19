@@ -4,8 +4,17 @@
 #include "servo.h"
 
 
-#define ZERO_ELEVATION_DUTY 4600
+#define ZERO_ELEVATION_DUTY 4350
 #define ZERO_AZIMUTH_DUTY 2000
+
+int angle_2_elivation_duty (int angle){
+  
+  int elevation;
+  
+  elevation = 77 + 32*angle; //77.392 + 31.521*angle;
+  
+  return elevation;   
+}
 
 
 void PWMinitialise(void){
@@ -27,7 +36,11 @@ void PWMinitialise(void){
     PWME  |= 0xFF;      // enable PWM0
 }
 
-void setServoPose(int azimuth, int elevation){  
+void setServoPose(int azimuth, int angle){  
+    int elevation;
+    
+    elevation = angle_2_elivation_duty(angle);
+
     PWMDTY45 = (int)(ZERO_ELEVATION_DUTY + elevation);  // Sets elevation to duty cycle using PWM 45
     PWMDTY67 = (int)(ZERO_AZIMUTH_DUTY + azimuth);   // Sets azimuth to duty cycle using PWM 67
 }

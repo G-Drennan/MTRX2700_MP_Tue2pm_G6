@@ -3,7 +3,8 @@
 unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserArr) {
 
   int arrLen = 10;
-  int i, avg, min, max, range;
+  int i, avg, min, max;
+  volatile int range;
   for (i = 0; i < arrLen; i++) {
     laserArr[i] = laserArr[i+1];
   }

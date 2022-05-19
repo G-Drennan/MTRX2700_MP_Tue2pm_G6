@@ -68,7 +68,7 @@ void main(void) {
   
   char buffer[128];
     
-  int i, itemNumber, distanceDifference;
+  volatile int i, itemNumber, distanceDifference;
     
   unsigned long singleSample, avg;
   
@@ -89,7 +89,7 @@ void main(void) {
 
   // initialise PWM
   PWMinitialise();
-  setServoPose(-750, -250); //FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
+  setServoPose(-750, 0); //FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
 
   #endif
   
@@ -142,10 +142,18 @@ void main(void) {
     // laser value array is declared
     // fill out array in handleLaserValues function
     
-    avg = handleLaserValues(singleSample, &laserValueArr[0]);
+    avg = (handleLaserValues(singleSample, &laserValueArr[0]))*10;
     if (avg != 0) {
       distanceDifference = avg - shelf_distance;
-      current_state = distanceDifference/box_depth;
+    
+      if ((distanceDifference >= 425) && (distanceDifference <= 475)) {
+        current_state = 0;  
+      } 
+      
+      else {
+        current_state = distanceDifference/box_depth;
+      }
+      
       current_item = itemArray[item_address-1];
       determineOccurence(current_state, prev_state, itemArray, current_item);
     }
