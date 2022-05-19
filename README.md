@@ -69,7 +69,7 @@ For simulation:
 - Open component and select "Terminal".
 - Right click on the terminal and configure ports to SCI1.
 
-If running on the Dragon Board:
+For Dragon Board:
 - Select “HCS12 Serial Monitor”. 
 - Connect the board from SCI1 to the computer using a cable.
 - Find and adjust the COM port to where the SCI1 is mapped to the Device Manager. 
