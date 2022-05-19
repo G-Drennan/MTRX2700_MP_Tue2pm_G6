@@ -13,7 +13,7 @@ const char outputCommand[] = "list";
 extern char *outputMessage1;//"\n---------------------------------\n" ; //= "This could be the list you are looking for\r\n"; 
 //extern char outputMessage2[] = "Or potentially outputs this message\r\n";
 extern char errorMessage1[] = "Invalid command\r\n";
-
+//extern int list[3];  
 //**********************************************//
 
 
@@ -55,13 +55,13 @@ char* outputInvatory(int *list, int InvatoryLen){
     return dest;     
 } 
     
-char* commandFunction(char *inputString, int *wFpointer){
+char* commandFunction(char *inputString, int list[], int *wFpointer){ 
     //Get the length of the input string
     int len = strlen(inputString);
     
   //Output Command
   if(!strncmp(inputString, outputCommand, len-1)){
-      int list[3] = {1,2,3}; 
+      //int list[3]; 
       int InvatoryLen = sizeof(list)/sizeof(int);
       
      outputMessage1 = outputInvatory(list, InvatoryLen);  
@@ -80,4 +80,4 @@ char* commandFunction(char *inputString, int *wFpointer){
     return errorMessage1; //Set the string location to the errorMessage
  
   }
-}      
+}     

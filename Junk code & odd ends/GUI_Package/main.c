@@ -10,10 +10,10 @@
 char *currentOutputLocation; //Stores character for output string
 int writingFlag = 0; //Variable for if the program is currently outputting a string
 int *wFpointer = &writingFlag; //Pointer to the writing flag
- 
+int list[3] = {1,2,3};  
 char inputArray[64]; //Allocated memory for incoming strings  
 int arrInLocation; //Location in array for incoming strings
-
+ 
 interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
 
   //Output
@@ -35,7 +35,7 @@ interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
     //If the most recently read function is a newline character, read the command
     if(inputArray[arrInLocation] == '\r'){
    
-      char* outputString = commandFunction(inputArray, wFpointer); //Calls the command function
+      char* outputString = commandFunction(inputArray, list, wFpointer); //Calls the command function
       currentOutputLocation = &outputString[0]; //Assigns the output character to the returned string
       
       arrInLocation = 0; //Resets the location of the input array pointer
@@ -55,16 +55,19 @@ interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
 }
 
 interrupt 25 void Hbutton_ISR(){
+    
+    list[0] = 9; 
     SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
-    DDRB = 0xFF; //Set the direction to output  
-}
+    DDRB = 0xFF; //Set the direction to output   
+} 
 
 
 //Main
 void main(void){
 
+  //list[0] = 9;      
   //SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
-  //DDRB = 0xFF; //Set the direction to output   
+  //DDRB = 0xFF; //Set the direction to output    
 	EnableInterrupts //Turn on interrupts
 
 
@@ -72,3 +75,4 @@ void main(void){
   
   } 
 } 
+ 
