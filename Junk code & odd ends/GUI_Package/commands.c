@@ -55,16 +55,16 @@ char* outputInvatory(int *list, int InvatoryLen){
     return dest;     
 } 
     
-char* commandFunction(char *inputString, int list[], int *wFpointer){ 
+char* commandFunction(char *inputString, int list[], int InvatoryLen, int *wFpointer){ 
     //Get the length of the input string
     int len = strlen(inputString);
     
   //Output Command
   if(!strncmp(inputString, outputCommand, len-1)){
       //int list[3]; 
-      int InvatoryLen = sizeof(list)/sizeof(int);
+      //int InvatoryLen = sizeof(list)/sizeof(int);
       
-     outputMessage1 = outputInvatory(list, InvatoryLen);  
+     outputMessage1 = outputInvatory(list, InvatoryLen);   
     //Set writing flag pointer to 1
     *wFpointer = 1; //Turns on writing flag to ignore reading interrupts 
       
@@ -80,4 +80,4 @@ char* commandFunction(char *inputString, int list[], int *wFpointer){
     return errorMessage1; //Set the string location to the errorMessage
  
   }
-}     
+}    
