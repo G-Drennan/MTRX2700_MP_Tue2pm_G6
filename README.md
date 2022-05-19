@@ -4,6 +4,7 @@
 - [Group Members](#group-members)
 - [Project Outline](#project-outline)
 - [System Overview](#system-overview)
+- [User Instructions](#user-instructions)
 - [output inventory list](#output-inventory-list)
 
 
@@ -50,7 +51,29 @@ Constantly updating the user.
 Move the servo so to scane multiple rows and columns of the given shelf.
 - Integration and serial input/output 
 
+## User Instructions 
+ 
+### Setting up the Hardware 
+1. Connect the 69 Pin Ribbon Cable interconnecting Dragon board and PTU.
+2. Power the Dragon board using the USB cable. 
+3. Start the PTU by power it with a power socket.   
 
+### Setting up the Software 
+Launch CodeWarrior   
+Open MTRX_2700_major.mcp  
+
+### Setting up the Serial Terminal  
+For simulation:
+- Select “Full Chip Simulation”. 
+- Run the debugger. 
+- Open component and select "Terminal".
+- Right click on the terminal and configure ports to SCI1.
+
+For Dragon Board:
+- Select “HCS12 Serial Monitor”. 
+- Connect the board from SCI1 to the computer using a cable.
+- Find and adjust the COM port to where the SCI1 is mapped to the Device Manager. 
+- Run the code.  
 
 ## output inventory list
 output ends at a new line

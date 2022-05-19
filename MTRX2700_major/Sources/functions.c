@@ -69,3 +69,4 @@ void initialiseInventoryContents(item** itemArray) {
       
   }     
 }
+
