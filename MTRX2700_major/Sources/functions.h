@@ -6,13 +6,15 @@
 #include <string.h>
 
 typedef struct {
-    char name[100];
+    char name[20];
     int amount;
 } item;
 
 #define shelf_distance 1500;
 #define back_shelf_distance 2000;
-#define box_depth 100;
+#define offset 40;
+#define box_depth 80;
+#define error_range 30;
 
 extern volatile int item_address;
 extern volatile int prev_state;
