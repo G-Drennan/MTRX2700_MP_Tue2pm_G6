@@ -3,6 +3,10 @@
 
 int angle_2_elivation_duty (int angle);
 
+int horizontal_distance(int angle, int lidar_dist);
+
+int shelf_angle(int shelf_number);
+
 void PWMinitialise(void);
 
 // sets servo in elevation and azimuth
