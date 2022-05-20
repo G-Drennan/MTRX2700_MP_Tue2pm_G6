@@ -12,6 +12,7 @@
 #include "servo.h"
 #include "laser.h"
 #include "functions.h"
+#include "7_seg.h"
 
 void printErrorCode(IIC_ERRORS error_code) {
   char buffer[128];  
@@ -55,7 +56,6 @@ void printErrorCode(IIC_ERRORS error_code) {
 unsigned long laserValueArr[10];
 
 // shelf parameters
-
 volatile int item_address = 1;
 
 // state parameters
@@ -101,6 +101,9 @@ void main(void) {
   // initialise the sensor suite
   error_code = iicSensorInit();
   
+  // initialise the 7_seg 
+  seg7Initialise();
+  
   // write the result of the sensor initialisation to the serial
   if (error_code == NO_ERROR) {
     sprintf(buffer, "NO_ERROR\r\n");
@@ -142,20 +145,26 @@ void main(void) {
     // laser value array is declared
     // fill out array in handleLaserValues function
     
-    avg = (handleLaserValues(singleSample, &laserValueArr[0]))*10;
+    avg = handleLaserValues(singleSample, &laserValueArr[0]);
     if (avg != 0) {
       distanceDifference = avg - shelf_distance;
     
       if ((distanceDifference >= 425) && (distanceDifference <= 475)) {
         current_state = 0;  
       } 
-      
       else {
-        current_state = distanceDifference/box_depth;
+        if ((distanceDifference % box_depth) >= (box_depth/2)) {
+          current_state = (distanceDifference / box_depth) + 1;
+        } 
+        else {
+          current_state = distanceDifference / box_depth;
+        }
       }
       
+      display();
+      
       current_item = itemArray[item_address-1];
-      determineOccurence(current_state, prev_state, itemArray, current_item);
+      determineOccurence(itemArray, current_item);
     }
 	  
     #endif
@@ -173,3 +182,4 @@ void main(void) {
   
   /* please make sure that you never leave main */
 }
+
