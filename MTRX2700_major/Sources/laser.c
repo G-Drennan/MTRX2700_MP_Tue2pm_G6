@@ -39,7 +39,7 @@ __interrupt void TC1_ISR(void) {
         fallEdge = (unsigned long)65536 + (unsigned long)fallEdge;
     }
 
-    lastLaserSample = ((fallEdge - riseEdge)/240)-5; // Calculate the period of the PWM wave
+    lastLaserSample = ((fallEdge - riseEdge)/24); // Calculate the period of the PWM wave
   }
   
   TFLG1 |= TFLG1_C1F_MASK; // Reset flag
