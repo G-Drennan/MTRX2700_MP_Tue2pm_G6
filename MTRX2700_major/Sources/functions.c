@@ -2,7 +2,7 @@
     
 unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserArr) {
 
-  int arrLen = 10;
+  int arrLen = 30;
   int i, avg, min, max;
   volatile int range;
   for (i = 0; i < arrLen; i++) {
@@ -26,19 +26,26 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
     
     range = max - min;
 
-    if (range < 5) {
+    if (range < 50) {
       avg = 0;
       for (i = 0; i < arrLen; i++) {
         avg = avg + laserArr[i];
       }
-      avg = avg / arrLen;
+      
+      if ((avg % arrLen) >= (arrLen/2)) {
+        avg = (avg / arrLen)+1;
+      } 
+      else {
+        avg = avg / arrLen;
+      }
+      
     }
       
     return avg;  
     
 }
 
-void determineOccurence(int current_state, int prev_state, item** itemArray, item* current_item) {
+void determineOccurence(item** itemArray, item* current_item) {
       
   if (current_state == prev_state) {
     // nothing has happened yet
@@ -69,4 +76,3 @@ void initialiseInventoryContents(item** itemArray) {
       
   }     
 }
-
