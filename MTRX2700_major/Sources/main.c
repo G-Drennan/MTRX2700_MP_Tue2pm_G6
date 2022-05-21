@@ -63,18 +63,19 @@ volatile int prev_state = 0; // start on a gap state
 volatile int current_state = 0;
 
 void main(void) {
-  
+
+
   IIC_ERRORS error_code = NO_ERROR;
   
   char buffer[128];
     
-  volatile int i, itemNumber, distanceDifference;
+  volatile int i, itemNumber, distanceDifference, remainder, div;
     
   unsigned long singleSample, avg;
   
   item** itemArray;
   item* current_item;
-  
+
   for (i=0; i<10; i++) {
    laserValueArr[i] = (unsigned long)i; 
   }
@@ -118,7 +119,10 @@ void main(void) {
   #else
   
   #endif
-
+  
+  //working up to here  
+  
+  
   Init_TC6();
 	
   //-----------------------------------------------------------------------------------------|
@@ -135,50 +139,54 @@ void main(void) {
   _DISABLE_COP();
     
   for(;;) {
-  
+
     #ifndef SIMULATION_TESTING
   
     // read the raw values
-      
+     
     GetLatestLaserSample(&singleSample);
     
     // laser value array is declared
     // fill out array in handleLaserValues function
     
     avg = handleLaserValues(singleSample, &laserValueArr[0]);
+    
+    
     if (avg != 0) {
       distanceDifference = avg - shelf_distance;
-    
+      
       if ((distanceDifference >= 425) && (distanceDifference <= 475)) {
         current_state = 0;  
-      } 
-      else {
-        if ((distanceDifference % box_depth) >= (box_depth/2)) {
-          current_state = (distanceDifference / box_depth) + 1;
-        } 
-        else {
-          current_state = distanceDifference / box_depth;
-        }
       }
+      // WHAT THE FUCK IS GOING ON HERE
+      remainder = distanceDifference % box_depth;
+      div = 0.5 * box_depth;
+            
+      if (div <= remainder) {
+        
+        //current_state = (distanceDifference / box_depth) + 1;
+      }
+      
+       
+      /* else {
+        current_state = distanceDifference / box_depth;
+      } */  
       
       display();
       
       current_item = itemArray[item_address-1];
       determineOccurence(itemArray, current_item);
     }
+  }
 	  
-    #endif
-  
-    
-    // format the string of the sensor data to go the the serial    
-    sprintf(buffer, "%lu\r\n", singleSample);
-    
-    // output the data to serial
-    SerialOutputString(buffer, &SCI1);
+  #endif
     
     
-    //_FEED_COP(); /* feeds the dog */
-  } /* loop forever */
-  
-  /* please make sure that you never leave main */
+  // format the string of the sensor data to go the the serial    
+  sprintf(buffer, "%lu\r\n", singleSample);
+    
+  // output the data to serial
+  SerialOutputString(buffer, &SCI1);
+      
 }
+

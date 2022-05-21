@@ -20,7 +20,7 @@ int angle_2_elivation_duty (int angle){
   return elevation;   
 }
 
-// Function calculates horizontal distance to object with trigonometry using current angle and LiDAR reading 
+/*// Function calculates horizontal distance to object with trigonometry using current angle and LiDAR reading 
 int horizontal_distance(int angle, int lidar_dist){
   int distance = lidar_dist * cos((angle/180) * M_PI);
   return distance
@@ -49,7 +49,7 @@ int shelf_angle(int shelf_number){
   }
 }
   
-
+*/
 
 void PWMinitialise(void){
     // set PP5 and PP7 for pwm output 

@@ -24,4 +24,7 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
 void determineOccurence(item** itemArray, item* current_item);
 void initialiseInventoryContents(item** itemArray);
 
+void display(void);
+void seg7Initialise(void); 
+
 #endif

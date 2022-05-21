@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "C:\Users\amatr\OneDrive\Desktop\General\Academic\Year 3\Sem 1\MTRX2700\MTRX2700_MP_Tue2pm_G6\MTRX2700_major\bin\Project.absHCS12_Serial_Monitor.abs"
+PROGRAM "C:\Users\61435\OneDrive\Documents\GitHub\MTRX2700_MP_Tue2pm_G6\MTRX2700_major\bin\Project.absHCS12_Serial_Monitor.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -14,20 +14,11 @@ FILE SECTION
 ---------------------------------------------------------------------------------------------
 mc9s12dg256.c.o                         Model: BANKED,        Lang: ANSI-C
 Start12.c.o                             Model: BANKED,        Lang: ANSI-C
-HEAP.C.o (ansibi.lib)                   Model: BANKED,        Lang: ANSI-C
-PRINTF.C.o (ansibi.lib)                 Model: BANKED,        Lang: ANSI-C
-STRING.C.o (ansibi.lib)                 Model: BANKED,        Lang: ANSI-C
-ALLOC.C.o (ansibi.lib)                  Model: BANKED,        Lang: ANSI-C
 rtshc12.c.o (ansibi.lib)                Model: BANKED,        Lang: ANSI-C
 main.c.o                                Model: BANKED,        Lang: ANSI-C
-iic.c.o                                 Model: BANKED,        Lang: ANSI-C
 isr_vectors.c.o                         Model: BANKED,        Lang: ANSI-C
 laser.c.o                               Model: BANKED,        Lang: ANSI-C
-pll.c.o                                 Model: BANKED,        Lang: ANSI-C
 servo.c.o                               Model: BANKED,        Lang: ANSI-C
-simple_serial.c.o                       Model: BANKED,        Lang: ANSI-C
-l3g4200d.c.o                            Model: BANKED,        Lang: ANSI-C
-functions.c.o                           Model: BANKED,        Lang: ANSI-C
 
 *********************************************************************************************
 STARTUP SECTION
@@ -36,8 +27,8 @@ Entry point: 0xC000 (_Startup)
 _startupData is allocated at 0xC015 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x1100     2087
-  _Copy    *toCopyDownBeg 0xC2E0
+  _Range   pZeroOut       0x1100     18
+  _Copy    *toCopyDownBeg 0xC1A7
 } _startupData;
 
 *********************************************************************************************
@@ -46,13 +37,10 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             21     R     0xC000     0xC014   ROM_C000
 .startData                        10     R     0xC015     0xC01E   ROM_C000
-.rodata                          116     R     0xC01F     0xC092   ROM_C000
-.rodata1                          58     R     0xC093     0xC0CC   ROM_C000
-NON_BANKED                       531     R     0xC0CD     0xC2DF   ROM_C000
-.copy                             19     R     0xC2E0     0xC2F2   ROM_C000
-.text                           2341     R   0x308000   0x308924   PAGE_30
+NON_BANKED                       392     R     0xC01F     0xC1A6   ROM_C000
+.copy                              2     R     0xC1A7     0xC1A8   ROM_C000
+.text                             49     R   0x308000   0x308030   PAGE_30
 .stack                           256   R/W     0x1000     0x10FF   RAM
-.data                             14   R/W     0x1100     0x110D   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -395,14 +383,12 @@ NON_BANKED                       531     R     0xC0CD     0xC2DF   ROM_C000
 .abs_section_2ae                   2   N/I      0x2AE      0x2AF   .absSeg339
 .abs_section_2be                   2   N/I      0x2BE      0x2BF   .absSeg340
 .abs_section_ff80                126     R     0xFF80     0xFFFD   .absSeg341
-.bss                              33   R/W     0x110E     0x112E   RAM
-HEAP_SEGMENT                    2000   R/W     0x112F     0x18FE   RAM
-.common                           40   R/W     0x18FF     0x1926   RAM
+.bss                              18   R/W     0x1100     0x1111   RAM
 .vectSeg342_vect                   2     R     0xFFFE     0xFFFF   .vectSeg342
 
 Summary of section sizes per section type:
-READ_ONLY (R):         C98 (dec:     3224)
-READ_WRITE (R/W):      927 (dec:     2343)
+READ_ONLY (R):         25A (dec:      602)
+READ_WRITE (R/W):      112 (dec:      274)
 NO_INIT (N/I):         190 (dec:      400)
 
 *********************************************************************************************
@@ -446,28 +432,28 @@ MODULE:                 -- mc9s12dg256.c.o --
      _PPAGE                                      30       1       1       0   .abs_section_30
      _PORTK                                      32       1       1       0   .abs_section_32
      _DDRK                                       33       1       1       0   .abs_section_33
-     _SYNR                                       34       1       1       1   .abs_section_34
-     _REFDV                                      35       1       1       1   .abs_section_35
-     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _SYNR                                       34       1       1       0   .abs_section_34
+     _REFDV                                      35       1       1       0   .abs_section_35
+     _CRGFLG                                     37       1       1       0   .abs_section_37
      _CRGINT                                     38       1       1       0   .abs_section_38
-     _CLKSEL                                     39       1       1       2   .abs_section_39
-     _PLLCTL                                     3A       1       1       1   .abs_section_3a
+     _CLKSEL                                     39       1       1       0   .abs_section_39
+     _PLLCTL                                     3A       1       1       0   .abs_section_3a
      _RTICTL                                     3B       1       1       0   .abs_section_3b
      _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       0   .abs_section_3f
-     _TIOS                                       40       1       1       3   .abs_section_40
+     _TIOS                                       40       1       1       0   .abs_section_40
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
-     _TSCR1                                      46       1       1       3   .abs_section_46
+     _TSCR1                                      46       1       1       0   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
-     _TCTL1                                      48       1       1       2   .abs_section_48
+     _TCTL1                                      48       1       1       0   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
-     _TCTL4                                      4B       1       1       2   .abs_section_4b
-     _TIE                                        4C       1       1       3   .abs_section_4c
-     _TSCR2                                      4D       1       1       2   .abs_section_4d
-     _TFLG1                                      4E       1       1       4   .abs_section_4e
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       0   .abs_section_4c
+     _TSCR2                                      4D       1       1       0   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
      _PAFLG                                      61       1       1       0   .abs_section_61
@@ -484,12 +470,12 @@ MODULE:                 -- mc9s12dg256.c.o --
      _ATD0STAT1                                  8B       1       1       0   .abs_section_8b
      _ATD0DIEN                                   8D       1       1       0   .abs_section_8d
      _PORTAD0                                    8F       1       1       0   .abs_section_8f
-     _PWME                                       A0       1       1       1   .abs_section_a0
-     _PWMPOL                                     A1       1       1       1   .abs_section_a1
-     _PWMCLK                                     A2       1       1       1   .abs_section_a2
-     _PWMPRCLK                                   A3       1       1       1   .abs_section_a3
-     _PWMCAE                                     A4       1       1       1   .abs_section_a4
-     _PWMCTL                                     A5       1       1       1   .abs_section_a5
+     _PWME                                       A0       1       1       0   .abs_section_a0
+     _PWMPOL                                     A1       1       1       0   .abs_section_a1
+     _PWMCLK                                     A2       1       1       0   .abs_section_a2
+     _PWMPRCLK                                   A3       1       1       0   .abs_section_a3
+     _PWMCAE                                     A4       1       1       0   .abs_section_a4
+     _PWMCTL                                     A5       1       1       0   .abs_section_a5
      _PWMSCLA                                    A8       1       1       0   .abs_section_a8
      _PWMSCLB                                    A9       1       1       0   .abs_section_a9
      _PWMSDN                                     C4       1       1       0   .abs_section_c4
@@ -510,9 +496,9 @@ MODULE:                 -- mc9s12dg256.c.o --
      _SPI0BR                                     DA       1       1       0   .abs_section_da
      _SPI0SR                                     DB       1       1       0   .abs_section_db
      _SPI0DR                                     DD       1       1       0   .abs_section_dd
-     _IBAD                                       E0       1       1       1   .abs_section_e0
-     _IBFD                                       E1       1       1       1   .abs_section_e1
-     _IBCR                                       E2       1       1       1   .abs_section_e2
+     _IBAD                                       E0       1       1       0   .abs_section_e0
+     _IBFD                                       E1       1       1       0   .abs_section_e1
+     _IBCR                                       E2       1       1       0   .abs_section_e2
      _IBSR                                       E3       1       1       0   .abs_section_e3
      _IBDR                                       E4       1       1       0   .abs_section_e4
      _SPI1CR1                                    F0       1       1       0   .abs_section_f0
@@ -737,12 +723,12 @@ MODULE:                 -- mc9s12dg256.c.o --
      _PWMCNT67                                   B2       2       2       0   .abs_section_b2
      _PWMPER01                                   B4       2       2       0   .abs_section_b4
      _PWMPER23                                   B6       2       2       0   .abs_section_b6
-     _PWMPER45                                   B8       2       2       1   .abs_section_b8
-     _PWMPER67                                   BA       2       2       1   .abs_section_ba
+     _PWMPER45                                   B8       2       2       0   .abs_section_b8
+     _PWMPER67                                   BA       2       2       0   .abs_section_ba
      _PWMDTY01                                   BC       2       2       0   .abs_section_bc
      _PWMDTY23                                   BE       2       2       0   .abs_section_be
-     _PWMDTY45                                   C0       2       2       2   .abs_section_c0
-     _PWMDTY67                                   C2       2       2       2   .abs_section_c2
+     _PWMDTY45                                   C0       2       2       0   .abs_section_c0
+     _PWMDTY67                                   C2       2       2       0   .abs_section_c2
      _SCI0BD                                     C8       2       2       0   .abs_section_c8
      _SCI1BD                                     D0       2       2       0   .abs_section_d0
      _ATD1CTL23                                 122       2       2       0   .abs_section_122
@@ -767,114 +753,36 @@ MODULE:                 -- Start12.c.o --
      _startupData                              C015       6       6       3   .startData  
 - LABELS:
      __SEG_END_SSTACK                          1100       0       0       1               
-MODULE:                 -- HEAP.C.o (ansibi.lib) --
-- PROCEDURES:
-     _heapcrash_                             308029       C      12       2   .text       
-- VARIABLES:
-     _heap_                                    112F     7D0    2000       1   HEAP_SEGMENT
-MODULE:                 -- PRINTF.C.o (ansibi.lib) --
-- PROCEDURES:
-     vprintf                                 308035     47B    1147      57   .text       
-     _out                                    3084B0       C      12       2   .text       
-     deposit_char                            3084BC       F      15       3   .text       
-     sprintf                                 3084CB      2F      47       4   .text       
-- VARIABLES:
-     pow10                                     C01F      28      40       4   .rodata     
-     pow16                                     C047      20      32       4   .rodata     
-     pow8                                      C067      2C      44       4   .rodata     
-     pbuf                                      110E       7       7      16   .bss        
-MODULE:                 -- STRING.C.o (ansibi.lib) --
-- PROCEDURES:
-     strcpy                                  3084FA       D      13       2   .text       
-- VARIABLES:
-MODULE:                 -- ALLOC.C.o (ansibi.lib) --
-- PROCEDURES:
-     malloc                                  308507      A7     167       4   .text       
-- VARIABLES:
-     heap_end                                  1115       2       2       2   .bss        
-     free_ptr                                  1117       2       2       6   .bss        
 MODULE:                 -- rtshc12.c.o (ansibi.lib) --
 - PROCEDURES:
-     _LCMP_P                                   C0CD      15      21       5   NON_BANKED  
-     _LNEG                                     C0E2       D      13       1   NON_BANKED  
-     _LINC                                     C0EF       5       5       1   NON_BANKED  
-     _LDEC                                     C0F4       8       8       1   NON_BANKED  
-     _LMULU16x32                               C0FC       F      15       1   NON_BANKED  
-     _lDivMod                                  C10B      BE     190       1   NON_BANKED  
-     _LDIVU                                    C1C9       E      14       1   NON_BANKED  
-     _ILSEXT                                   C1D7       7       7       6   NON_BANKED  
-     _CASE_DIRECT_BYTE                         C1DE       5       5       1   NON_BANKED  
-     _CASE_CHECKED_BYTE                        C1E3      14      20       1   NON_BANKED  
-     _CASE_SEARCH_8                            C1F7      17      23       1   NON_BANKED  
-     _CASE_SEARCH_8_BYTE                       C20E      1A      26       1   NON_BANKED  
+     _LINC                                     C01F       5       5       1   NON_BANKED  
+     _LDEC                                     C024       8       8       1   NON_BANKED  
+     _lDivMod                                  C02C      BE     190       1   NON_BANKED  
+     _LDIVU                                    C0EA       E      14       1   NON_BANKED  
 - VARIABLES:
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                    3085AE     11D     285       3   .text       
-- VARIABLES:
-     STRING.NO_ERROR...9                       C093       B      11       1   .rodata1    
-     STRING.ERROR..d...10                      C09E       B      11       1   .rodata1    
-     STRING..lu...11                           C0A9       6       6       1   .rodata1    
-     item_address                              1100       2       2       3   .data       
-     prev_state                                1119       2       2       1   .bss        
-     current_state                             111B       2       2       3   .bss        
-     laserValueArr                             18FF      28      40       3   .common     
-MODULE:                 -- iic.c.o --
-- PROCEDURES:
-     iicinit                                 3086CB      1C      28       2   .text       
-     Init_TC7                                3086E7      10      16       2   .text       
+     main                                    308029       8       8       2   .text       
 - VARIABLES:
 MODULE:                 -- isr_vectors.c.o --
 - PROCEDURES:
-     UnimplementedISR                          C228       A      10      60   NON_BANKED  
-     SoftwareInterrupt                         C232       6       6       1   NON_BANKED  
+     UnimplementedISR                          C0F8       A      10      60   NON_BANKED  
+     SoftwareInterrupt                         C102       6       6       1   NON_BANKED  
 - VARIABLES:
      _vect                                     FF80      7E     126       0   .abs_section_ff80
 MODULE:                 -- laser.c.o --
 - PROCEDURES:
-     laserInit                               3086F7      13      19       2   .text       
-     GetLatestLaserSample                    30870A       D      13       2   .text       
-     TC1_ISR                                   C238      61      97       1   NON_BANKED  
+     TC1_ISR                                   C108      58      88       1   NON_BANKED  
 - VARIABLES:
-     riseEdge                                  111D       4       4       7   .bss        
-     fallEdge                                  1121       4       4       6   .bss        
-     lastLaserSample                           1125       4       4       4   .bss        
-MODULE:                 -- pll.c.o --
-- PROCEDURES:
-     PLL_Init                                308717      15      21       2   .text       
-- VARIABLES:
+     riseEdge                                  1100       4       4       7   .bss        
+     fallEdge                                  1104       4       4       6   .bss        
+     lastLaserSample                           1108       4       4       2   .bss        
 MODULE:                 -- servo.c.o --
 - PROCEDURES:
-     angle_2_elivation_duty                  30872C       8       8       2   .text       
-     PWMinitialise                           308734      27      39       2   .text       
-     setServoPose                            30875B      11      17       2   .text       
-     Init_TC6                                30876C      13      19       2   .text       
-     TC6_ISR                                   C299      47      71       1   NON_BANKED  
+     TC6_ISR                                   C160      47      71       1   NON_BANKED  
 - VARIABLES:
-     iterator_counter                          1129       4       4       9   .bss        
-     toggle                                    112D       2       2       2   .bss        
-MODULE:                 -- simple_serial.c.o --
-- PROCEDURES:
-     SerialInitialise                        30877F      42      66       2   .text       
-     SerialOutputChar                        3087C1      11      17       2   .text       
-     SerialOutputString                      3087D2      19      25       4   .text       
-- VARIABLES:
-     SCI1                                      1102       C      12       3   .data       
-MODULE:                 -- l3g4200d.c.o --
-- PROCEDURES:
-     iicSensorInit                           3087EB       F      15       2   .text       
-- VARIABLES:
-MODULE:                 -- functions.c.o --
-- PROCEDURES:
-     handleLaserValues                       3087FA      B3     179       2   .text       
-     determineOccurence                      3088AD      23      35       2   .text       
-     initialiseInventoryContents             3088D0      55      85       2   .text       
-- VARIABLES:
-     STRING.item1.1                            C0AF       6       6       1   .rodata1    
-     STRING.item2.2                            C0B5       6       6       1   .rodata1    
-     STRING.item3.3                            C0BB       6       6       1   .rodata1    
-     STRING.item4.4                            C0C1       6       6       1   .rodata1    
-     STRING.item5.5                            C0C7       6       6       1   .rodata1    
+     iterator_counter                          110C       4       4       9   .bss        
+     toggle                                    1110       2       2       2   .bss        
 
 *********************************************************************************************
 MODULE STATISTIC
@@ -882,47 +790,25 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   mc9s12dg256.c.o                            400      0      0
   Start12.c.o                                  0     62      0
-  HEAP.C.o (ansibi.lib)                     2000     12      0
-  PRINTF.C.o (ansibi.lib)                      7   1221    116
-  STRING.C.o (ansibi.lib)                      0     13      0
-  ALLOC.C.o (ansibi.lib)                       4    167      0
-  rtshc12.c.o (ansibi.lib)                     0    347      0
-  main.c.o                                    46    285     28
-  iic.c.o                                      0     44      0
+  rtshc12.c.o (ansibi.lib)                     0    217      0
+  main.c.o                                     0      8      0
   isr_vectors.c.o                              0     16    126
-  laser.c.o                                   12    129      0
-  pll.c.o                                      0     21      0
-  servo.c.o                                    6    154      0
-  simple_serial.c.o                           12    108      0
-  l3g4200d.c.o                                 0     15      0
-  functions.c.o                                0    299     30
-  other                                      256     12     19
+  laser.c.o                                   12     88      0
+  servo.c.o                                    6     71      0
+  other                                      256     12      2
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  Init _heapcrash_ vprintf _out deposit_char sprintf strcpy malloc main 
-  iicinit Init_TC7 laserInit GetLatestLaserSample PLL_Init 
-  angle_2_elivation_duty PWMinitialise setServoPose Init_TC6 SerialInitialise 
-  SerialOutputChar SerialOutputString iicSensorInit handleLaserValues 
-  determineOccurence initialiseInventoryContents 
-SECTION: ".data"
-  item_address SCI1 
+  Init main 
 SECTION: ".bss"
-  pbuf heap_end free_ptr prev_state current_state riseEdge fallEdge 
-  lastLaserSample iterator_counter toggle 
+  riseEdge fallEdge lastLaserSample iterator_counter toggle 
 SECTION: ".init"
   _Startup 
-SECTION: ".rodata"
-  pow10 pow16 pow8 
-SECTION: ".rodata1"
-  STRING.NO_ERROR...9 STRING.ERROR..d...10 STRING..lu...11 STRING.item1.1 
-  STRING.item2.2 STRING.item3.3 STRING.item4.4 STRING.item5.5 
 SECTION: "NON_BANKED"
-  _LCMP_P _LNEG _LINC _LDEC _LMULU16x32 _lDivMod _LDIVU _ILSEXT 
-  _CASE_DIRECT_BYTE _CASE_CHECKED_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE 
-  UnimplementedISR SoftwareInterrupt TC1_ISR TC6_ISR 
+  _LINC _LDEC _lDivMod _LDIVU UnimplementedISR SoftwareInterrupt TC1_ISR 
+  TC6_ISR 
 SECTION: ".abs_section_8"
   _PORTE 
 SECTION: ".abs_section_9"
@@ -1605,10 +1491,6 @@ SECTION: ".abs_section_2ae"
   _CAN4RXTSR 
 SECTION: ".abs_section_2be"
   _CAN4TXTSR 
-SECTION: "HEAP_SEGMENT"
-  _heap_ 
-SECTION: ".common"
-  laserValueArr 
 SECTION: ".abs_section_ff80"
   _vect 
 
@@ -1647,29 +1529,29 @@ OBJECT LIST SORTED BY ADDRESS
      _PPAGE                                      30       1       1       0   .abs_section_30
      _PORTK                                      32       1       1       0   .abs_section_32
      _DDRK                                       33       1       1       0   .abs_section_33
-     _SYNR                                       34       1       1       1   .abs_section_34
-     _REFDV                                      35       1       1       1   .abs_section_35
-     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _SYNR                                       34       1       1       0   .abs_section_34
+     _REFDV                                      35       1       1       0   .abs_section_35
+     _CRGFLG                                     37       1       1       0   .abs_section_37
      _CRGINT                                     38       1       1       0   .abs_section_38
-     _CLKSEL                                     39       1       1       2   .abs_section_39
-     _PLLCTL                                     3A       1       1       1   .abs_section_3a
+     _CLKSEL                                     39       1       1       0   .abs_section_39
+     _PLLCTL                                     3A       1       1       0   .abs_section_3a
      _RTICTL                                     3B       1       1       0   .abs_section_3b
      _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       0   .abs_section_3f
-     _TIOS                                       40       1       1       3   .abs_section_40
+     _TIOS                                       40       1       1       0   .abs_section_40
      _CFORC                                      41       1       1       0   .abs_section_41
      _OC7M                                       42       1       1       0   .abs_section_42
      _OC7D                                       43       1       1       0   .abs_section_43
      _TCNT                                       44       2       2       2   .abs_section_44
-     _TSCR1                                      46       1       1       3   .abs_section_46
+     _TSCR1                                      46       1       1       0   .abs_section_46
      _TTOV                                       47       1       1       0   .abs_section_47
-     _TCTL1                                      48       1       1       2   .abs_section_48
+     _TCTL1                                      48       1       1       0   .abs_section_48
      _TCTL2                                      49       1       1       0   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
-     _TCTL4                                      4B       1       1       2   .abs_section_4b
-     _TIE                                        4C       1       1       3   .abs_section_4c
-     _TSCR2                                      4D       1       1       2   .abs_section_4d
-     _TFLG1                                      4E       1       1       4   .abs_section_4e
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       0   .abs_section_4c
+     _TSCR2                                      4D       1       1       0   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _TC0                                        50       2       2       0   .abs_section_50
      _TC1                                        52       2       2       2   .abs_section_52
@@ -1713,12 +1595,12 @@ OBJECT LIST SORTED BY ADDRESS
      _ATD0DR5                                    9A       2       2       0   .abs_section_9a
      _ATD0DR6                                    9C       2       2       0   .abs_section_9c
      _ATD0DR7                                    9E       2       2       0   .abs_section_9e
-     _PWME                                       A0       1       1       1   .abs_section_a0
-     _PWMPOL                                     A1       1       1       1   .abs_section_a1
-     _PWMCLK                                     A2       1       1       1   .abs_section_a2
-     _PWMPRCLK                                   A3       1       1       1   .abs_section_a3
-     _PWMCAE                                     A4       1       1       1   .abs_section_a4
-     _PWMCTL                                     A5       1       1       1   .abs_section_a5
+     _PWME                                       A0       1       1       0   .abs_section_a0
+     _PWMPOL                                     A1       1       1       0   .abs_section_a1
+     _PWMCLK                                     A2       1       1       0   .abs_section_a2
+     _PWMPRCLK                                   A3       1       1       0   .abs_section_a3
+     _PWMCAE                                     A4       1       1       0   .abs_section_a4
+     _PWMCTL                                     A5       1       1       0   .abs_section_a5
      _PWMSCLA                                    A8       1       1       0   .abs_section_a8
      _PWMSCLB                                    A9       1       1       0   .abs_section_a9
      _PWMCNT01                                   AC       2       2       0   .abs_section_ac
@@ -1727,12 +1609,12 @@ OBJECT LIST SORTED BY ADDRESS
      _PWMCNT67                                   B2       2       2       0   .abs_section_b2
      _PWMPER01                                   B4       2       2       0   .abs_section_b4
      _PWMPER23                                   B6       2       2       0   .abs_section_b6
-     _PWMPER45                                   B8       2       2       1   .abs_section_b8
-     _PWMPER67                                   BA       2       2       1   .abs_section_ba
+     _PWMPER45                                   B8       2       2       0   .abs_section_b8
+     _PWMPER67                                   BA       2       2       0   .abs_section_ba
      _PWMDTY01                                   BC       2       2       0   .abs_section_bc
      _PWMDTY23                                   BE       2       2       0   .abs_section_be
-     _PWMDTY45                                   C0       2       2       2   .abs_section_c0
-     _PWMDTY67                                   C2       2       2       2   .abs_section_c2
+     _PWMDTY45                                   C0       2       2       0   .abs_section_c0
+     _PWMDTY67                                   C2       2       2       0   .abs_section_c2
      _PWMSDN                                     C4       1       1       0   .abs_section_c4
      _SCI0BD                                     C8       2       2       0   .abs_section_c8
      _SCI0CR1                                    CA       1       1       0   .abs_section_ca
@@ -1753,9 +1635,9 @@ OBJECT LIST SORTED BY ADDRESS
      _SPI0BR                                     DA       1       1       0   .abs_section_da
      _SPI0SR                                     DB       1       1       0   .abs_section_db
      _SPI0DR                                     DD       1       1       0   .abs_section_dd
-     _IBAD                                       E0       1       1       1   .abs_section_e0
-     _IBFD                                       E1       1       1       1   .abs_section_e1
-     _IBCR                                       E2       1       1       1   .abs_section_e2
+     _IBAD                                       E0       1       1       0   .abs_section_e0
+     _IBFD                                       E1       1       1       0   .abs_section_e1
+     _IBCR                                       E2       1       1       0   .abs_section_e2
      _IBSR                                       E3       1       1       0   .abs_section_e3
      _IBDR                                       E4       1       1       0   .abs_section_e4
      _SPI1CR1                                    F0       1       1       0   .abs_section_f0
@@ -1957,129 +1839,54 @@ OBJECT LIST SORTED BY ADDRESS
      _CAN4TXDLR                                 2BC       1       1       0   .abs_section_2bc
      _CAN4TXTBPR                                2BD       1       1       0   .abs_section_2bd
      _CAN4TXTSR                                 2BE       2       2       0   .abs_section_2be
-     item_address                              1100       2       2       3   .data       
-     SCI1                                      1102       C      12       3   .data       
-     pbuf                                      110E       7       7      16   .bss        
-     heap_end                                  1115       2       2       2   .bss        
-     free_ptr                                  1117       2       2       6   .bss        
-     prev_state                                1119       2       2       1   .bss        
-     current_state                             111B       2       2       3   .bss        
-     riseEdge                                  111D       4       4       7   .bss        
-     fallEdge                                  1121       4       4       6   .bss        
-     lastLaserSample                           1125       4       4       4   .bss        
-     iterator_counter                          1129       4       4       9   .bss        
-     toggle                                    112D       2       2       2   .bss        
-     _heap_                                    112F     7D0    2000       1   HEAP_SEGMENT
-     laserValueArr                             18FF      28      40       3   .common     
+     riseEdge                                  1100       4       4       7   .bss        
+     fallEdge                                  1104       4       4       6   .bss        
+     lastLaserSample                           1108       4       4       2   .bss        
+     iterator_counter                          110C       4       4       9   .bss        
+     toggle                                    1110       2       2       2   .bss        
      _Startup                                  C000      15      21       0   .init       
-     pow10                                     C01F      28      40       4   .rodata     
-     pow16                                     C047      20      32       4   .rodata     
-     pow8                                      C067      2C      44       4   .rodata     
-     STRING.NO_ERROR...9                       C093       B      11       1   .rodata1    
-     STRING.ERROR..d...10                      C09E       B      11       1   .rodata1    
-     STRING..lu...11                           C0A9       6       6       1   .rodata1    
-     STRING.item1.1                            C0AF       6       6       1   .rodata1    
-     STRING.item2.2                            C0B5       6       6       1   .rodata1    
-     STRING.item3.3                            C0BB       6       6       1   .rodata1    
-     STRING.item4.4                            C0C1       6       6       1   .rodata1    
-     STRING.item5.5                            C0C7       6       6       1   .rodata1    
-     _LCMP_P                                   C0CD      15      21       5   NON_BANKED  
-     _LNEG                                     C0E2       D      13       1   NON_BANKED  
-     _LINC                                     C0EF       5       5       1   NON_BANKED  
-     _LDEC                                     C0F4       8       8       1   NON_BANKED  
-     _LMULU16x32                               C0FC       F      15       1   NON_BANKED  
-     _lDivMod                                  C10B      BE     190       1   NON_BANKED  
-     _LDIVU                                    C1C9       E      14       1   NON_BANKED  
-     _ILSEXT                                   C1D7       7       7       6   NON_BANKED  
-     _CASE_DIRECT_BYTE                         C1DE       5       5       1   NON_BANKED  
-     _CASE_CHECKED_BYTE                        C1E3      14      20       1   NON_BANKED  
-     _CASE_SEARCH_8                            C1F7      17      23       1   NON_BANKED  
-     _CASE_SEARCH_8_BYTE                       C20E      1A      26       1   NON_BANKED  
-     UnimplementedISR                          C228       A      10      60   NON_BANKED  
-     SoftwareInterrupt                         C232       6       6       1   NON_BANKED  
-     TC1_ISR                                   C238      61      97       1   NON_BANKED  
-     TC6_ISR                                   C299      47      71       1   NON_BANKED  
+     _LINC                                     C01F       5       5       1   NON_BANKED  
+     _LDEC                                     C024       8       8       1   NON_BANKED  
+     _lDivMod                                  C02C      BE     190       1   NON_BANKED  
+     _LDIVU                                    C0EA       E      14       1   NON_BANKED  
+     UnimplementedISR                          C0F8       A      10      60   NON_BANKED  
+     SoftwareInterrupt                         C102       6       6       1   NON_BANKED  
+     TC1_ISR                                   C108      58      88       1   NON_BANKED  
+     TC6_ISR                                   C160      47      71       1   NON_BANKED  
      _vect                                     FF80      7E     126       0   .abs_section_ff80
      Init                                    308000      29      41       2   .text       
-     _heapcrash_                             308029       C      12       2   .text       
-     vprintf                                 308035     47B    1147      57   .text       
-     _out                                    3084B0       C      12       2   .text       
-     deposit_char                            3084BC       F      15       3   .text       
-     sprintf                                 3084CB      2F      47       4   .text       
-     strcpy                                  3084FA       D      13       2   .text       
-     malloc                                  308507      A7     167       4   .text       
-     main                                    3085AE     11D     285       3   .text       
-     iicinit                                 3086CB      1C      28       2   .text       
-     Init_TC7                                3086E7      10      16       2   .text       
-     laserInit                               3086F7      13      19       2   .text       
-     GetLatestLaserSample                    30870A       D      13       2   .text       
-     PLL_Init                                308717      15      21       2   .text       
-     angle_2_elivation_duty                  30872C       8       8       2   .text       
-     PWMinitialise                           308734      27      39       2   .text       
-     setServoPose                            30875B      11      17       2   .text       
-     Init_TC6                                30876C      13      19       2   .text       
-     SerialInitialise                        30877F      42      66       2   .text       
-     SerialOutputChar                        3087C1      11      17       2   .text       
-     SerialOutputString                      3087D2      19      25       4   .text       
-     iicSensorInit                           3087EB       F      15       2   .text       
-     handleLaserValues                       3087FA      B3     179       2   .text       
-     determineOccurence                      3088AD      23      35       2   .text       
-     initialiseInventoryContents             3088D0      55      85       2   .text       
+     main                                    308029       8       8       2   .text       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
 NOT USED PROCEDURES
-PRINTF.C.o (ansibi.lib):
-  set_printf vsprintf 
-STRING.C.o (ansibi.lib):
-  strerror memchr memcmp memcpy2 memcpy _memcpy_8bitCount memmove memset 
-  _memset_clear_8bitCount strlen strset strcat strncat strncpy strcmp strncmp 
-  strchr strrchr strspn strcspn strpbrk strstr strtok strcoll strxfrm 
-ALLOC.C.o (ansibi.lib):
-  free calloc realloc 
 rtshc12.c.o (ansibi.lib):
   _BSHL _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU 
-  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LCOM _LMUL _LMULS16x32 
-  _NEG_P _LDIVS _LMODU _LMODS _COPY _CASE_DIRECT _CASE_CHECKED _CASE_SEARCH 
-  _CASE_SEARCH_BYTE _FCALL _FPCMP 
+  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_P _LCMP_PP _LNEG _LCOM _LMUL 
+  _LMULU16x32 _LMULS16x32 _NEG_P _LDIVS _LMODU _LMODS _ILSEXT _COPY 
+  _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_CHECKED_BYTE _CASE_SEARCH 
+  _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL _FPCMP 
 main.c.o:
   printErrorCode 
-iic.c.o:
-  iic_request_data iic_read_data iic_send_data iicresponse iicstart iicstop 
-  iicrestart iictransmit iicswrcv iicreceive iicreceivem1 iicreceivelast 
-  iicreceiveone setAlarm TC7_ISR 
+laser.c.o:
+  laserInit GetLatestLaserSample 
+servo.c.o:
+  angle_2_elivation_duty PWMinitialise setServoPose Init_TC6 
 NOT USED VARIABLES
-STRING.C.o (ansibi.lib):
-  STRING..1 next.2 
 rtshc12.c.o (ansibi.lib):
   _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
 main.c.o:
   STRING.IIC..No.error...1 STRING.IIC..No.response...2 
   STRING.IIC..No.acknowledge..3 STRING.IIC..Timeout.waiting.4 
   STRING.IIC..Timeout.not.set.5 STRING.IIC..Received.timeou.6 
-  STRING.IIC..Data.size.incor.7 STRING.IIC..Unknown.error...8 
-iic.c.o:
-  alarmSignaled currentTime alarmTime alarmSet 
-simple_serial.c.o:
-  SCI0 
+  STRING.IIC..Data.size.incor.7 STRING.IIC..Unknown.error...8 item_address 
+  prev_state current_state SCI1 laserValueArr 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC2E0 ---- SIZE       4 ---
-Filling bytes inserted
- 000D1101
-------- ROM-ADDRESS: 0xC2E4 ---- RAM-ADDRESS: 0x1101 ---- SIZE       1 ---
-Name of initialized Object : item_address:1
- 01
-------- ROM-ADDRESS: 0xC2E5 ---- SIZE       1 ---
-Filling bytes inserted
- 00
-------- ROM-ADDRESS: 0xC2E6 ---- RAM-ADDRESS: 0x1103 ---- SIZE      11 ---
-Name of initialized Object : SCI1:1
- D000D100D2 00D300D700 D4
-------- ROM-ADDRESS: 0xC2F1 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC1A7 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -2096,36 +1903,6 @@ TC6_ISR                   USES _TCNT _TC6 _TFLG1 toggle iterator_counter _LINC
 _vect                     USES UnimplementedISR TC6_ISR TC1_ISR 
                                 SoftwareInterrupt 
 Init                      USES _startupData 
-vprintf                   USES vprintf _CASE_SEARCH_8_BYTE _CASE_DIRECT_BYTE 
-                                _CASE_SEARCH_8 pbuf _ILSEXT _LNEG pow8 _LCMP_P pow16 pow10 
-                                _out 
-_out                      USES pbuf 
-deposit_char              USES pbuf 
-sprintf                   USES pbuf deposit_char vprintf 
-malloc                    USES heap_end _heap_ free_ptr _heapcrash_ 
-main                      USES _ILSEXT laserValueArr PLL_Init PWMinitialise 
-                                setServoPose SCI1 SerialInitialise iicSensorInit 
-                                STRING.NO_ERROR...9 STRING.ERROR..d...10 sprintf 
-                                SerialOutputString laserInit Init_TC6 malloc 
-                                initialiseInventoryContents GetLatestLaserSample handleLaserValues 
-                                _LMULU16x32 current_state item_address prev_state 
-                                determineOccurence STRING..lu...11 main 
-iicinit                   USES Init_TC7 _IBFD _IBAD _IBCR 
-Init_TC7                  USES _TSCR1 _TSCR2 _TIOS _TCTL1 _TIE 
-laserInit                 USES _TSCR1 _TIE _TIOS _TCTL4 _TFLG1 
-GetLatestLaserSample      USES lastLaserSample 
-PLL_Init                  USES _SYNR _REFDV _CLKSEL _PLLCTL _CRGFLG 
-PWMinitialise             USES _PWMCLK _PWMPOL _PWMCTL _PWMCAE _PWMPRCLK 
-                                _PWMPER45 _PWMPER67 _PWMDTY45 _PWMDTY67 _PWME 
-setServoPose              USES angle_2_elivation_duty _PWMDTY45 _PWMDTY67 
-Init_TC6                  USES _TSCR1 _TSCR2 _TIOS _TCTL1 _TIE _TFLG1 
-SerialInitialise          USES _CASE_CHECKED_BYTE 
-SerialOutputString        USES SerialOutputChar 
-iicSensorInit             USES iicinit 
-handleLaserValues         USES _ILSEXT _LCMP_P 
-determineOccurence        USES item_address 
-initialiseInventoryContents USES STRING.item1.1 STRING.item2.2 STRING.item3.3 
-                                STRING.item4.4 STRING.item5.5 malloc strcpy 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -2133,77 +1910,7 @@ DEPENDENCY TREE
  main and _Startup Group
  | 
  +- main                
- |  | 
- |  +- _ILSEXT             
- |  |    
- |  +- PLL_Init            
- |  |    
- |  +- PWMinitialise       
- |  |    
- |  +- setServoPose        
- |  |  | 
- |  |  +- angle_2_elivation_duty
- |  |       
- |  +- SerialInitialise    
- |  |  | 
- |  |  +- _CASE_CHECKED_BYTE  
- |  |       
- |  +- iicSensorInit       
- |  |  | 
- |  |  +- iicinit             
- |  |     | 
- |  |     +- Init_TC7            
- |  |          
- |  +- sprintf             
- |  |  | 
- |  |  +- deposit_char        
- |  |  |    
- |  |  +- vprintf             
- |  |     | 
- |  |     +- _CASE_SEARCH_8_BYTE 
- |  |     |    
- |  |     +- _CASE_DIRECT_BYTE   
- |  |     |    
- |  |     +- _CASE_SEARCH_8      
- |  |     |    
- |  |     +- _ILSEXT              (see above)
- |  |     |  
- |  |     +- _LNEG               
- |  |     |    
- |  |     +- _LCMP_P             
- |  |     |    
- |  |     +- _out                
- |  |          
- |  +- SerialOutputString  
- |  |  | 
- |  |  +- SerialOutputChar    
- |  |       
- |  +- laserInit           
- |  |    
- |  +- Init_TC6            
- |  |    
- |  +- malloc              
- |  |  | 
- |  |  +- _heapcrash_         
- |  |       
- |  +- initialiseInventoryContents
- |  |  | 
- |  |  +- malloc               (see above)
- |  |  |  
- |  |  +- strcpy              
- |  |       
- |  +- GetLatestLaserSample
- |  |    
- |  +- handleLaserValues   
- |  |  | 
- |  |  +- _ILSEXT              (see above)
- |  |  |  
- |  |  +- _LCMP_P              (see above)
- |  |     
- |  +- _LMULU16x32         
- |  |    
- |  +- determineOccurence  
- |       
+ |    
  +- _Startup            
     | 
     +- Init                
@@ -2234,6 +1941,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 8
-Total size of all blocks to be downloaded: 3224
+Number of blocks to be downloaded: 6
+Total size of all blocks to be downloaded: 602
 
