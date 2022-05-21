@@ -158,11 +158,11 @@ void main(void) {
       if ((distanceDifference >= 425) && (distanceDifference <= 475)) {
         current_state = 0;  
       }
-      // WHAT THE FUCK IS GOING ON HERE
+
       remainder = distanceDifference % box_depth;
       div = 0.5 * box_depth;
             
-      if (div <= remainder) {
+      if (div <= remainder) { // BREAKS HERE
         
         //current_state = (distanceDifference / box_depth) + 1;
       }
