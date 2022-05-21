@@ -20,6 +20,8 @@ int angle_2_elivation_duty (int angle){
   return elevation;   
 }
 
+// BOTH OF THE BELOW FUNCTIONS HAVE ISSUES
+
 /*// Function calculates horizontal distance to object with trigonometry using current angle and LiDAR reading 
 int horizontal_distance(int angle, int lidar_dist){
   int distance = lidar_dist * cos((angle/180) * M_PI);
