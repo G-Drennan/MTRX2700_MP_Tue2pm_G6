@@ -48,10 +48,12 @@ Using the distance obtained to determine the number of items left. The depth of 
 ### Appropriately updating the inventory
 
 Constantly updating the inventory to get the latest results. Interupt will be used to get all the value and update to the inventory.
-- Initialising and controlling the servos
 
-Move the servo so to scane multiple rows and columns of the given shelf. This can be done by changing the duty cycle of PWM 45 and PWM 67 to get the desired angle. 
-- Integration and serial input/output 
+### Initialising and controlling the servos
+
+Move the servo so to scane multiple rows and columns of the given shelf. This can be done by changing the duty cycle of PWM 45 and PWM 67 to get the desired angle.
+
+### Integration and serial input/output 
 
 Updating the user. The terminal get readings from PORT 1 thru interupt to achieve constant update and output. 
 
