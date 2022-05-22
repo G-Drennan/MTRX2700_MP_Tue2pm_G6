@@ -76,9 +76,15 @@ For Dragon Board:
 - Run the code.  
 
 ## output inventory list
-output ends at a new line
+This module outputs the inventory list to the serial port 1. It does this thru interrupts after the macrocrontroler has countted the number of each item.
 
-limited to num of items between 0-9, and the items names are not unique to each product.
+It takes in the size of the inventory array and asigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
+
+"|  item_X    X  |  item_X    X  |  item_X    X  |\n" 
+
+Outputting ends at a new line.
+
+Th function within this module num2char is limited to numbers between 0-9, and thus limits the numebr of itmes that the program can output.  
 
 
 In the future, the item names could be unique to each location and the num of items can be expanded to numbers greater than 9. 
