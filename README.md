@@ -31,18 +31,21 @@ The number of missing items at each location updates an inventory which can then
 
 ## System Overview 
 The PTU used consists a Lidar sensor, 2 servo motors and an IMU. This will all be controlled using the Dragon 12 Board. To complete the task, the system is divided into 7 modules which includes:
-- Building inventory
+### Building inventory
 
-- Obtaining laser values
+###  Obtaining laser values
 
 Laser values will be used to determine the distance from current possition to the object distance. This is done by getting the rising edge and falling edge from PORT T and determine half the period of the PWM wave using these values.
-- Filtering laser values
+
+###  Filtering laser values
 
 Filter the laser values so to get accurate readings. This is done by averaging out a range of laser values.
-- Using avg to determine the state/number of boxes
+
+### Using avg to determine the state/number of boxes
 
 Using the distance obtained to determine the number of items left. The depth of the shelf and box is constant, by knowing both these values, the total number of boxes can be obtained and hence knowing the amount of items being taken off the shelf. The value will also be display thru 7 segment on the Dragon board. 
-- Appropriately updating the inventory
+
+### Appropriately updating the inventory
 
 Constantly updating the inventory to get the latest results. Interupt will be used to get all the value and update to the inventory.
 - Initialising and controlling the servos
@@ -52,7 +55,7 @@ Move the servo so to scane multiple rows and columns of the given shelf. This ca
 
 Updating the user. The terminal get readings from PORT 1 thru interupt to achieve constant update and output. 
 
-- Outputing Invetory
+### Outputing Invetory
  
 Once the prgram has calculated the number of each item, it enables input.
 By inputting the command 'list' the user can gain a list in tehr serial port 1 that looks like:
