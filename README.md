@@ -68,6 +68,7 @@ This module outputs the inventory list to the serial port 1. It does this thru i
 It takes in the size of the inventory array and asigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
 
 **Limitations**
+
 The outputting ends at a new line. 
 The function within this module num2char is limited to numbers between 0-9, and thus limits the numebr of itmes that the program can output. 
 
