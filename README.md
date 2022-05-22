@@ -33,15 +33,6 @@ The number of missing items at each location updates an inventory which can then
 The PTU used consists a Lidar sensor, 2 servo motors and an IMU. This will all be controlled using the Dragon 12 Board. To complete the task, the system is divided into 7 modules which includes:
 - Building inventory
 
-This module outputs the inventory list to the serial port 1. It does this thru interrupts after the macrocrontroler has countted the number of each item.
-
-It takes in the size of the inventory array and asigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
-
-"|  item_X    X  |  item_X    X  |  item_X    X  |\n" 
-
-Outputting ends at a new line.
-
-Th function within this module num2char is limited to numbers between 0-9, and thus limits the numebr of itmes that the program can output. 
 - Obtaining laser values
 
 Laser values will be used to determine the distance from current possition to the object distance. This is done by getting the rising edge and falling edge from PORT T and determine half the period of the PWM wave using these values.
@@ -60,6 +51,21 @@ Move the servo so to scane multiple rows and columns of the given shelf. This ca
 - Integration and serial input/output 
 
 Updating the user. The terminal get readings from PORT 1 thru interupt to achieve constant update and output. 
+
+- Outputing Invetory 
+Once the prgram has calculated the number of each item, it enables input.
+By inputting the command 'list' the user can gain a list in tehr serial port 1 that looks like:
+
+"|  item_X    X  |  item_X    X  |  item_X    X  |\n"  
+
+This module outputs the inventory list to the serial port 1. It does this thru interrupts after the macrocrontroler has countted the number of each item.
+
+It takes in the size of the inventory array and asigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
+
+Outputting ends at a new line.
+
+Th function within this module num2char is limited to numbers between 0-9, and thus limits the numebr of itmes that the program can output. 
+
 ## User Instructions 
  
 ### Setting up the Hardware 
