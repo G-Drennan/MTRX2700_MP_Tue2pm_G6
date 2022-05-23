@@ -54,7 +54,7 @@ void SerialInitialise(int baudRate, SerialPort *serial_port) {
 }
     
         
-void SerialOutputChar(char data, SerialPort *serial_port) {  
+/*void SerialOutputChar(char data, SerialPort *serial_port) {  
   while((*(serial_port->StatusRegister) & SCI1SR1_TDRE_MASK) == 0){
   }
   
@@ -68,5 +68,5 @@ void SerialOutputString(char *pt, SerialPort *serial_port) {
     SerialOutputChar(*pt, serial_port);
     pt++;
   }            
-}
+}*/
  
