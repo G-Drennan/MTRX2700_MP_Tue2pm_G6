@@ -90,7 +90,7 @@ void main(void) {
 
   // initialise PWM
   PWMinitialise();
-  setServoPose(-750, 0); //FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
+  setServoPose(-750, -2); //FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
 
   #endif
   
@@ -152,41 +152,39 @@ void main(void) {
     avg = handleLaserValues(singleSample, &laserValueArr[0]);
     
     
-    if (avg != 0) {
-      distanceDifference = avg - shelf_distance;
+    // determine state of program
+    if (avg != 0) { // checking range is within 5cm (determined error of LiDAR)
+      distanceDifference = (avg*10) - shelf_distance;
       
       remainder = distanceDifference % box_depth;
       div = 0.5 * box_depth;
-	    
-      if ((distanceDifference >= 425) && (distanceDifference <= 475)) {
-        current_state = 0;  
-      }
-            
-      if (div <= remainder) { // BREAKS HERE
+      
+      
+      // 
+      if ((distanceDifference >= 425) && (distanceDifference <= 475)) {   // check if gap state
+        current_state = 9; // gap state  
+      } 
+      else if (div <= remainder) { // check if need to round up 
         
-        //current_state = (distanceDifference / box_depth) + 1;
-      }
-      
-       
-      /* else {
         current_state = distanceDifference / box_depth;
-      } */  
+        current_state ++;
+      }  
+      else {                       // otherwise round down 
+        current_state = distanceDifference / box_depth;
+      }   
       
-      display();
+      display();                   // send current state to 7-seg for testing purposes
       
-      current_item = itemArray[item_address-1];
-      determineOccurence(itemArray, current_item);
+      current_item = itemArray[item_address-1];     // update the current item 
+      determineOccurence(itemArray, current_item);  // interpret flags to determine real-world occurence 
     }
-  }
-	  
-  #endif
-    
-    
-  // format the string of the sensor data to go the the serial    
+      // format the string of the sensor data to go the the serial    
   sprintf(buffer, "%lu\r\n", singleSample);
     
   // output the data to serial
   SerialOutputString(buffer, &SCI1);
+  }
+	  
+  #endif
       
 }
-
