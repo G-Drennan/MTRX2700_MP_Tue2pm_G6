@@ -57,7 +57,7 @@ Move the servo so to scane multiple rows and columns of the given shelf. This ca
 
 Updating the user. The terminal get readings from PORT 1 thru interupt to achieve constant update and output. 
 
-### Outputing Invetory
+### Outputting inventory 
  
 Once the prgram has calculated the number of each item, a button in H-port can be pressed to enables input.
 By inputting the command 'list' the user can gain a list in tehr serial port 1 that looks like:
