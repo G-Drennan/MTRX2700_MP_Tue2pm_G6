@@ -56,7 +56,7 @@ Move the servo so to scane multiple rows and columns of the given shelf. This ca
 ### Serial input/output: Command function
 
 Updating the user. The terminal get readings from serial PORT 1 thru interrupt to achieve constant update and output.
-Once the program has calculated the number of each item, a button in H-port can be pressed to enables input.
+Once the program has calculated the number of each item, the input can be enabled.
 
 **Outputting inventory**
  
