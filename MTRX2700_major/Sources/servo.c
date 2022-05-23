@@ -1,15 +1,9 @@
 
 #include "derivative.h"
-#include <math.h> 
 #include "servo.h"
-
 
 #define ZERO_ELEVATION_DUTY 4350
 #define ZERO_AZIMUTH_DUTY 2000
-
-// Values in CM, can change if needed
-#define HEIGHT_OF_SHELF 40
-#define HEIGHT_OF_RADAR 20
 
 int angle_2_elivation_duty (int angle){
   
@@ -20,34 +14,35 @@ int angle_2_elivation_duty (int angle){
   return elevation;   
 }
 
-// BOTH OF THE BELOW FUNCTIONS HAVE ISSUES
-
-/*// Function calculates horizontal distance to object with trigonometry using current angle and LiDAR reading 
+// Function calculates horizontal distance to object with trigonometry using current angle and LiDAR reading 
 int horizontal_distance(int angle, int lidar_dist){
-  int distance = lidar_dist * cos((angle/180) * M_PI);
-  return distance
+  double val;
+  val = PI/ 180.0;
+  double distance = (double) lidar_dist * cos((double) angle * val);
+  return round(distance);
 }
 
 // Function returns angle required to hit middle of given input shelf
 int shelf_angle(int shelf_number){
   
-  int angle = 0;
-  float shelf_angle = 0;      
-  float max_angle = 0;
+  double angle = 0;
+  double shelf_angle = 0;      
+  double max_angle = 0;
+  int round_angle = 0;
   
-  if(shelf_number == 0){
+  if (shelf_number == 0){
     return angle;
   } 
   else{
-    shelf_angle = atan((HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*(shelf_number - 1))/(back_shelf_distance/10 - 50));
-    max_angle = atan((HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*shelf_number)/(back_shelf_distance/10));
+    shelf_angle = atan((HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*(shelf_number-1))/(SHELF_DIST - 50.0)) * 180.0/PI;
+    max_angle = atan((HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*(double)shelf_number)/SHELF_DIST) * 180.0/PI;
     
     if(max_angle < shelf_angle){
-      // ERROR, cannot read shelf so return to face down
-      return -90;
+      printf("ERROR, cannot read shelf so return to face down\n");
+      return 0;
     }
-    angle = shelf_angle + 1/2 * (max_angle - shelf_angle);
-    return angle;
+    angle = shelf_angle + 0.5 * (max_angle - shelf_angle);
+    return round(angle);
   }
 }
   
