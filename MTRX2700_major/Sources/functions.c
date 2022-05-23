@@ -1,9 +1,8 @@
 #include "functions.h"
-#include "derivative.h"
     
 unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserArr) {
 
-  int arrLen = 30;
+  int arrLen = 25;
   int i, avg, min, max;
   volatile int range;
   for (i = 0; i < arrLen; i++) {
@@ -27,10 +26,10 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
     
     range = max - min;
 
-    if (range < 50) {
+    if (range < 40) {
       avg = 0;
       for (i = 0; i < arrLen; i++) {
-        avg = avg + laserArr[i];
+        avg = avg + (laserArr[i]/10);
       }
       
       if ((avg % arrLen) >= (arrLen/2)) {
@@ -51,12 +50,12 @@ void determineOccurence(item** itemArray, item* current_item) {
   if (current_state == prev_state) {
     // nothing has happened yet
   }
-  else if (current_state == 0 && current_state != prev_state) {
+  else if (current_state == 9 && current_state != prev_state) {
     // arrived at a gap state
     prev_state = current_state;
     item_address ++;
   } 
-  else if (current_state != 0 && current_state != prev_state) {
+  else if (current_state != 9 && prev_state == 9) {
     // arrived at a new box address, record number of boxes
     prev_state = current_state;
     current_item->amount = current_state;
@@ -76,19 +75,4 @@ void initialiseInventoryContents(item** itemArray) {
     itemArray[k] = current_item;
       
   }     
-}
-
-void display(void){
-  int seg_values_arr[10] = { 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F}; // store 7-seg values for 0-9
-  
-  PORTB = seg_values_arr[current_state]; //displayed on 7-seg
-  
-  //0x06
-}
-
-void seg7Initialise(void){
-    DDRB = 0xFF;      // set port B and D to outputs
-    DDRP = 0xFF; 
-    
-    PTP = 0xFE; // turn the left-most 7-seg 11111110  
 }
