@@ -53,16 +53,18 @@ Constantly updating the inventory to get the latest results. Interupt will be us
 
 Move the servo so to scane multiple rows and columns of the given shelf. This can be done by changing the duty cycle of PWM 45 and PWM 67 to get the desired angle.
 
-### Integration and serial input/output 
+### Serial input/output: Comman function 
 
-Updating the user. The terminal get readings from PORT 1 thru interupt to achieve constant update and output. 
+Updating the user. The terminal get readings from serial PORT 1 thru interupt to achieve constant update and output.
+Once the prgram has calculated the number of each item, a button in H-port can be pressed to enables input.
 
 **Outputting inventory** 
  
-Once the prgram has calculated the number of each item, a button in H-port can be pressed to enables input.
 By inputting the command 'list' the user can gain a list in tehr serial port 1 that looks like:
 
 "|  item_X    X  |  item_X    X  |  item_X    X  |\n"  
+
+Any other input causes an error message
 
 This module outputs the inventory list to the serial port 1. It does this thru interrupts after the macrocrontroler has countted the number of each item.
 It takes in the size of the inventory array and asigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
