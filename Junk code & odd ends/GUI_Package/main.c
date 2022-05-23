@@ -59,7 +59,8 @@ interrupt VectorNumber_Vsci1 void SerialInterruptHandler(){
 
 interrupt 25 void Hbutton_ISR(){
     
-    list[0] = 9;list[1] = 7; list[2] = 5;  
+    list[0] = 9; list[1] = 7; list[2] = 5;  
+	//for()
     SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
     DDRB = 0xFF; //Set the direction to output   
 } 
