@@ -37,7 +37,7 @@ The PTU used consists a Lidar sensor, 2 servo motors and an IMU. This will all b
 
 Laser values will be used to determine the distance from current possition to the object distance. This is done by getting the rising edge and falling edge from PORT T and determine half the period of the PWM wave using these values.
 
-###  Filtering laser values
+**Filtering laser values**
 
 Filter the laser values so to get accurate readings. This is done by averaging out a range of laser values.
 
@@ -57,7 +57,7 @@ Move the servo so to scane multiple rows and columns of the given shelf. This ca
 
 Updating the user. The terminal get readings from PORT 1 thru interupt to achieve constant update and output. 
 
-### Outputting inventory 
+**Outputting inventory** 
  
 Once the prgram has calculated the number of each item, a button in H-port can be pressed to enables input.
 By inputting the command 'list' the user can gain a list in tehr serial port 1 that looks like:
