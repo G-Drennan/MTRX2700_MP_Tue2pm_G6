@@ -74,6 +74,9 @@ It takes in the size of the inventory array and assigns each item a name from it
 The outputting ends at a new line.
 The function within this module num2char is limited to numbers between 0-9, and thus limits the number of items that the program can output.
 
+**Testing**
+Ensured that the command gave out the expected output.
+
 ## User Instructions
  
 ### Setting up the Hardware
