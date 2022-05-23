@@ -17,4 +17,4 @@ void seg7Initialise(void){
     DDRP = 0xFF; 
     
     PTP = 0xFE; // turn the left-most 7-seg 11111110  
-}`
+}

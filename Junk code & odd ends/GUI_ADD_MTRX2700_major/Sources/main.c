@@ -1,13 +1,13 @@
 #include <hidef.h>      /* common defines and macros */
-#include <assert.h>
 #include "derivative.h"      /* derivative-specific definitions */
-
+#include <stdio.h>   
+#include <string.h>
 // need this for string functions
 
 #include "pll.h"
-#include "simple_serial.h"
+//#include "simple_serial.h" 
 
-#include "l3g4200d.h"
+#include "l3g4200d.h" 
 
 #include "servo.h"
 #include "laser.h"
@@ -15,7 +15,8 @@
 #include "7_seg.h"
 
 #include "commands.h" 
-#include "stringIO.h" 
+#include "stringIO.h"
+#include "initialiseIO.h" 
 
 char *currentOutputLocation; //Stores character for output string
 int writingFlag = 0; //Variable for if the program is currently outputting a string
@@ -103,7 +104,7 @@ void printErrorCode(IIC_ERRORS error_code) {
       break;
   }
     
-  SerialOutputString(buffer, &SCI1);
+  //SerialOutputString(buffer, &SCI1);
 }
 
 unsigned long laserValueArr[10];
@@ -148,7 +149,7 @@ void main(void) {
   #endif
   
   // initialise the simple serial
-  SerialInitialise(BAUD_9600, &SCI1);
+  //SerialInitialise(BAUD_9600, &SCI1);
   
   #ifndef SIMULATION_TESTING
   
@@ -161,10 +162,10 @@ void main(void) {
   // write the result of the sensor initialisation to the serial
   if (error_code == NO_ERROR) {
     sprintf(buffer, "NO_ERROR\r\n");
-    SerialOutputString(buffer, &SCI1);
+    //SerialOutputString(buffer, &SCI1);
   } else {
     sprintf(buffer, "ERROR %d\r\n");
-    SerialOutputString(buffer, &SCI1);
+    //SerialOutputString(buffer, &SCI1);
   }
 
   laserInit();
@@ -235,7 +236,7 @@ void main(void) {
   sprintf(buffer, "%lu\r\n", singleSample);
     
   // output the data to serial
-  SerialOutputString(buffer, &SCI1);
+  //SerialOutputString(buffer, &SCI1);
   
   }
 	  
@@ -250,7 +251,7 @@ void main(void) {
    
   //list[0] = 9; list[1] = 7; list[2] = 5;         
   SerialInitialiseBasic(&SCI1); //Initialise the SCI1 port for input and output   
-  DDRB = 0xFF; //Set the direction to output      
+  DDRB = 0xFF; //Set the direction to output       
 	EnableInterrupts //Turn on interrupts 
 
       
