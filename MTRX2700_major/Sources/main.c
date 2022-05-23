@@ -155,12 +155,12 @@ void main(void) {
     if (avg != 0) {
       distanceDifference = avg - shelf_distance;
       
+      remainder = distanceDifference % box_depth;
+      div = 0.5 * box_depth;
+	    
       if ((distanceDifference >= 425) && (distanceDifference <= 475)) {
         current_state = 0;  
       }
-
-      remainder = distanceDifference % box_depth;
-      div = 0.5 * box_depth;
             
       if (div <= remainder) { // BREAKS HERE
         
