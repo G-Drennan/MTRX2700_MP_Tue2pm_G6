@@ -1,11 +1,11 @@
 ## W9
 ------------------------------------------------------------------------------------------------  
 Developed idea 26/04/22  
-Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming
+Present: Jack, Simran, Antonio, Giaan, Kousha, Wei-ming
 
 ------------------------------------------------------------------------------------------------  
 Created outline of modules  01/05/22  
-Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming  
+Present: Jack, Simran, Antonio, Giaan, Kousha, Wei-ming  
 Location: Discord   
 
 Meeting Purpose:  
@@ -19,16 +19,16 @@ The following modules were created in the meeting so to get things started:
 6. Orientation of the sensor - including above and below shelf (will be done by Wei-Ming)
 
 ------------------------------------------------------------------------------------------------  
-Created outline of modules  03/05/22  
-Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming  
+Develop modules  03/05/22  
+Present: Jack, Simran, Antonio, Giaan, Kousha, Wei-ming  
 Location: Discord/Lab   
 
 Meeting Purpose:  
 Work on individual parts and also figure out how the lidar work, for the in-lab members.   
 
 -----------------------------------------------------------------------------------------------
-Created outline of modules  10/05/22  
-Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming  
+Develop modules  10/05/22  
+Present: Jack, Simran, Antonio, Giaan, Kousha, Wei-ming  
 Location: Discord/Lab  
 
 Meeting Purpose:  
@@ -38,14 +38,35 @@ Problem faced include:
 - compiling error for GUI interfacing(fixed by Giaan)
 - broken code for laser array when it is defined in main instead of global(fixed by Jack) 
 - logic issue when shift values used in array(fixed by Jack)  
-
+- broken servo tilt code (fixed by Antonio)
+- develope a funciton to determine required angle to measure above shelf (fixed by 
 ----------------------------------------------------------------------------------------------
-Created outline of modules  17/05/22  
-Present: Jack, Simran, Antonio, Giaan, Kazlani, Wei-ming  
+develop modules  17/05/22  
+Present: Jack, Simran, Antonio, Giaan, Kousha, Wei-ming  
 Location: Discord/Lab   
 
 Meeting Purpose:  
 Submit major project concept and discuss on the hardware intergration.  
 Obtaining and filtering laser values has completed, while the other modules are to be complete and check by this week.
 
+Problem faced include
+Problem faced includes
 -----------------------------------------------------------------------------------------------
+develop modules  23/05/22  
+Present: Jack, Antonio, Giaan, Kousha 
+Location: Discord/PNR   
+
+Meeting Purpose:  
+FINISH ASSIGNMENT and integrate everything together.  
+Film final video. 
+
+Problem faced include: 
+
+-----------------------------------------------------------------------------------------------
+d
+
+
+
+
+
+
