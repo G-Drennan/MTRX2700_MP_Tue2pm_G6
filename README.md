@@ -59,7 +59,7 @@ Updating the user. The terminal get readings from PORT 1 thru interupt to achiev
 
 ### Outputing Invetory
  
-Once the prgram has calculated the number of each item, it enables input.
+Once the prgram has calculated the number of each item, a button in H-port can be pressed to enables input.
 By inputting the command 'list' the user can gain a list in tehr serial port 1 that looks like:
 
 "|  item_X    X  |  item_X    X  |  item_X    X  |\n"  
