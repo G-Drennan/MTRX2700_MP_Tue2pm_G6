@@ -21,16 +21,16 @@ Group 6 members:
 ## Project Outline
 The problem to be solved is that at the end of the day in a supermarket, shelf restockers are required to go around the store, find missing stock and replenish it. This current process is expensive with staff required to work longer hours, error prone attributed to human error, and tideous requirng significant time to count the entire stock. Using a robot to go around the store (after closing time) and build an inventory of missing stock is a more optimal soloution. The process would be cheaper, less prone to errors and allow restockers to more efficiently complete their tasks as they would know exactly how much of each item needs to be replenished.
 
-To complete this task, the robot would move around on a track, using LiDAR and servo motors to determine the number of items at each shelf. As a proof of concept we will be designing this project specifically to work in the cereal ile. This assumption simplifies object detection as all items are of the same dimension. The number of missing boxes will be determined by the unit running on a track in parallel to the shelves, the number of missing boxes can be easily calculated by:
+To complete this task, the robot would move around on a track, using LiDAR and servo motors to determine the number of items at each shelf. As a proof of concept we will be designing this project specifically to work in the cereal aisle. This assumption simplifies object detection as all items are of the same dimension. The number of missing boxes will be determined by the unit running on a track in parallel to the shelves, the number of missing boxes can be easily calculated by:
 
                               Number of missing boxes = (measured distance - distance to front of shelf) / width of box
 
 By treating each item location as a street address, the need to differentiate items is removed - instead of analysing the colour and shape of a house to determine who owns it, use the street address and corresponding database linking addresses to owners to determine who owns the house. This could be optimised by using an RGB sensor to determine the item's barcode. This would tell the unit the specific item that is being scanned without requiring a predetermined street map. A limitation of the LiDAR is an inability to differentiate items of the same stock count. For example, if two items are empty the number of missing boxes will be returned as the same value, hence an inability to determine if a new item is being scanned or not. To overcome this a 5cm offset from the back of the shelf (at a distance ≠ a distance made from boxes) is used as reference point indicating a change in items.
 
-The project counts the number of gap states to determine the units location relative to the ile. Once the end of the ile is reached the tilt is adjusted to measure the above shelf. Then the unit scans the above shelf. At our given distance and shelf dimension only the above and below shelves can be measured. The number of missing items at each location updates an inventory which output to the terminal once the complete inventory stock
+The project counts the number of gap states to determine the units location relative to the aisle. Once the end of the aisle is reached the tilt is adjusted to measure the above shelf. Then the unit scans the above shelf. At our given distance and shelf dimension only the above and below shelves can be measured. The number of missing items at each location updates an inventory which outputs to the terminal once the stock taking is completed.
 
 ## System Overview
-The PTU used consists a Lidar sensor, 2 servo motors and an IMU. This will all be controlled using the Dragon 12 Board. To complete the task, the system is divided into 7 modules which includes:
+The PTU used consists of a Lidar sensor, 2 servo motors and an IMU. This will all be controlled using the Dragon 12 Board. To complete the task, the system is divided into 7 modules which includes:
 ### Building inventory
 
 ###  Obtaining laser values
@@ -60,13 +60,13 @@ Once the program has calculated the number of each item, the input can be enable
 
 **Outputting inventory**
  
-By inputting the command 'list' the user can gain a list in tehr serial port 1 that looks like:
+By inputting the command 'list' the user can gain a list in the serial port 1 that looks like:
 
 "|  item_X    X  |  item_X    X  |  item_X    X  |\n"  
 
 Any other input causes an error message
 
-This module outputs the inventory list to the serial port 1. It does this thru interrupts after the microcontroller has counted the number of each item.
+This module outputs the inventory list to the serial port 1. It does this through interrupts after the microcontroller has counted the number of each item.
 It takes in the size of the inventory array and assigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
 
 **Limitations**
