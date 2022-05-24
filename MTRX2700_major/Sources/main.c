@@ -5,7 +5,6 @@
 // need this for string functions
 
 #include "pll.h"
-#include "simple_serial.h"
 
 #include "l3g4200d.h"
 
@@ -14,43 +13,44 @@
 #include "functions.h"
 #include "7_seg.h"
 
+#include "simple_serial.h"
+
 void printErrorCode(IIC_ERRORS error_code) {
-  char buffer[128];  
   switch (error_code) {
     case NO_ERROR: 
-      sprintf(buffer, "IIC: No error\r\n");
+      //sprintf(buffer, "IIC: No error\r\n");
       break;
     
     case NO_RESPONSE: 
-      sprintf(buffer, "IIC: No response\r\n");
+      //sprintf(buffer, "IIC: No response\r\n");
       break;
     
     case NAK_RESPONSE:
-      sprintf(buffer, "IIC: No acknowledge\r\n");
+      //sprintf(buffer, "IIC: No acknowledge\r\n");
       break;
     
     case IIB_CLEAR_TIMEOUT:
-      sprintf(buffer, "IIC: Timeout waiting for reply\r\n");
+      //sprintf(buffer, "IIC: Timeout waiting for reply\r\n");
       break;
     
     case IIB_SET_TIMEOUT: 
-      sprintf(buffer, "IIC: Timeout not set\r\n");
+      //sprintf(buffer, "IIC: Timeout not set\r\n");
       break;
     
     case RECEIVE_TIMEOUT:
-      sprintf(buffer, "IIC: Received timeout\r\n");
+      //sprintf(buffer, "IIC: Received timeout\r\n");
       break;
     
     case IIC_DATA_SIZE_TOO_SMALL:
-      sprintf(buffer, "IIC: Data size incorrect\r\n");
+      //sprintf(buffer, "IIC: Data size incorrect\r\n");
       break;
 
     default:
-      sprintf(buffer, "IIC: Unknown error\r\n");
+      //sprintf(buffer, "IIC: Unknown error\r\n");
       break;
   }
     
-  SerialOutputString(buffer, &SCI1);
+  //SerialOutputString(buffer, &SCI1);
 }
 
 unsigned long laserValueArr[10];
@@ -61,6 +61,7 @@ volatile int item_address = 1;
 // state parameters
 volatile int prev_state = 0; // start on a gap state
 volatile int current_state = 0;
+volatile int shelf = 0; // start on the bottom shelf
 
 void main(void) {
 
@@ -68,11 +69,12 @@ void main(void) {
   IIC_ERRORS error_code = NO_ERROR;
   
   char buffer[128];
+      
+  volatile int i, itemNumber,lower_gap_limit, upper_gap_limit, angle, tick;
     
-  volatile int i, itemNumber, distanceDifference, remainder, div;
+  unsigned long singleSample;
+  double avg, distanceDifference;
     
-  unsigned long singleSample, avg;
-  
   item** itemArray;
   item* current_item;
 
@@ -90,12 +92,10 @@ void main(void) {
 
   // initialise PWM
   PWMinitialise();
-  setServoPose(-750, -2); //FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
+  setServoPose(-750, 0); //FOR ANGLE CHANGES WHEN READING MULTIPLE SHELVES
 
   #endif
   
-  // initialise the simple serial
-  SerialInitialise(BAUD_9600, &SCI1);
   
   #ifndef SIMULATION_TESTING
   
@@ -104,14 +104,14 @@ void main(void) {
   
   // initialise the 7_seg 
   seg7Initialise();
-  
+ 
   // write the result of the sensor initialisation to the serial
   if (error_code == NO_ERROR) {
-    sprintf(buffer, "NO_ERROR\r\n");
-    SerialOutputString(buffer, &SCI1);
+    //sprintf(buffer, "NO_ERROR\r\n");
+    //SerialOutputString(buffer, &SCI1);
   } else {
-    sprintf(buffer, "ERROR %d\r\n");
-    SerialOutputString(buffer, &SCI1);
+    //sprintf(buffer, "ERROR %d\r\n");
+    //SerialOutputString(buffer, &SCI1);
   }
 
   laserInit();
@@ -129,7 +129,7 @@ void main(void) {
   // build inventory (without amounts) using a text file of item names (in order of scanning)|
   //-----------------------------------------------------------------------------------------|
   
-  itemNumber = 5;
+  itemNumber = 6;
   itemArray = (item**)malloc(sizeof(item*)*itemNumber);
   
   initialiseInventoryContents(itemArray);
@@ -137,8 +137,21 @@ void main(void) {
   EnableInterrupts;
   //COPCTL = 7;
   _DISABLE_COP();
-    
+  
+  tick = 0;  
   for(;;) {
+    
+    if (item_address == 4 && tick != 1) {
+      shelf++;
+      DisableInterrupts;
+      current_state = 9;
+      prev_state = 9;
+      tick = 1;
+    }
+    
+    angle = shelf_angle(shelf);
+    setServoPose(-750, angle+2);
+    EnableInterrupts;
 
     #ifndef SIMULATION_TESTING
   
@@ -149,26 +162,23 @@ void main(void) {
     // laser value array is declared
     // fill out array in handleLaserValues function
     
-    avg = handleLaserValues(singleSample, &laserValueArr[0]);
-    
+    avg = handleLaserValues(singleSample, &laserValueArr[0], angle);
     
     // determine state of program
     if (avg != 0) { // checking range is within 5cm (determined error of LiDAR)
-      distanceDifference = (avg*10) - shelf_distance;
+      distanceDifference = (avg*10) - shelf_distance;    //might need to mult by 10?
       
-      remainder = distanceDifference % box_depth;
-      div = 0.5 * box_depth;
+      upper_gap_limit = 475;
+      lower_gap_limit = 425;
       
-      
-      // 
-      if ((distanceDifference >= 425) && (distanceDifference <= 475)) {   // check if gap state
+       
+      if (distanceDifference >= lower_gap_limit && distanceDifference <= upper_gap_limit && shelf == 0) {   // check if gap state
         current_state = 9; // gap state  
       } 
-      else if (div <= remainder) { // check if need to round up 
-        
-        current_state = distanceDifference / box_depth;
-        current_state ++;
+      else if (distanceDifference >= 525 && distanceDifference <= 575 && shelf == 1) {   // check if gap state
+        current_state = 9; // gap state  
       }  
+   
       else {                       // otherwise round down 
         current_state = distanceDifference / box_depth;
       }   
@@ -176,15 +186,29 @@ void main(void) {
       display();                   // send current state to 7-seg for testing purposes
       
       current_item = itemArray[item_address-1];     // update the current item 
-      determineOccurence(itemArray, current_item);  // interpret flags to determine real-world occurence 
+      determineOccurence(current_item);  // interpret flags to determine real-world occurence
+            
+      if (item_address == 6) {
+    
+        SerialInitialise(BAUD_9600, &SCI1);
+      
+        for (i = 0; i < 6; i++) {
+          sprintf(buffer, "Item %d: %d\r\n",i, itemArray[i]->amount);  
+        }
+      freeMemory(itemArray, 6);
+      }
     }
+  }
       // format the string of the sensor data to go the the serial    
-  sprintf(buffer, "%lu\r\n", singleSample);
+  //sprintf(buffer, "%lu\r\n", singleSample);
     
   // output the data to serial
-  SerialOutputString(buffer, &SCI1);
-  }
+  //SerialOutputString(buffer, &SCI1);
+  
+  
 	  
-  #endif
-      
+  #endif      
 }
+
+
+
