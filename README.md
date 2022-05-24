@@ -15,7 +15,7 @@ Group 6 members:
 - Simran
 - Antonio
 - Kousha
-- Giaan (Online)
+- Giaan (Online) SID 500 463 679
 - Wei-Ming (Online)
 
 ## Project Outline
