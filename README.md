@@ -54,7 +54,7 @@ Move the servo so to scane multiple rows and columns of the given shelf. This ca
 
 ### Serial input/output: Command function
 
-Updating the user. The terminal get readings from serial PORT 1 thru interrupt to achieve constant update and output.
+Updating the user. The terminal get readings from serial PORT 1 thru sprintf()/interrupt to achieve constant update and output.
 Once the program has calculated the number of each item, the input can be enabled.
 
 **Outputting inventory**
@@ -65,7 +65,7 @@ By inputting the command 'list' the user can gain a list in the serial port 1 th
 
 Any other input causes an error message
 
-This module outputs the inventory list to the serial port 1. It does this through interrupts after the microcontroller has counted the number of each item.
+This module outputs the inventory list to the serial port 1. It does this through sprintf()/interrupts after the microcontroller has counted the number of each item.
 
 It takes in the size of the inventory array, and the amounts of each item and assigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
 
