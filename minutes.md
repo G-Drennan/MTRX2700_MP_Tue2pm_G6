@@ -54,6 +54,7 @@ Problem faced includes
 -----------------------------------------------------------------------------------------------
 develop modules  23/05/22  
 Present: Jack, Antonio, Giaan, Kousha  
+absent: Simran, Wei-ming  
 Location: Discord/PNR   
 
 Meeting Purpose:  
