@@ -49,8 +49,6 @@ Meeting Purpose:
 Submit major project concept and discuss on the hardware intergration.  
 Obtaining and filtering laser values has completed, while the other modules are to be complete and check by this week.
 
-Problem faced include
-Problem faced includes
 -----------------------------------------------------------------------------------------------
 develop modules  23/05/22  
 Present: Jack, Antonio, Giaan, Kousha  
@@ -60,8 +58,10 @@ Location: Discord/PNR
 Meeting Purpose:  
 FINISH ASSIGNMENT and integrate everything together.  
 Film final video. 
+Also discussion on presentation  
 
-Problem faced include: 
+Problem faced include:  
+Minor error faced when integrate modules together. Also, code from simulation don't work as aspected for some reason.
 
 -----------------------------------------------------------------------------------------------
 
