@@ -1,6 +1,7 @@
 
 #include "derivative.h"
 #include "servo.h"
+#include <math.h>
 
 #define ZERO_ELEVATION_DUTY 4350
 #define ZERO_AZIMUTH_DUTY 2000
@@ -9,44 +10,44 @@ int angle_2_elivation_duty (int angle){
   
   int elevation;
   
-  elevation = 77 + 32*angle; //77.392 + 31.521*angle;
+  elevation = 77.392 + 31.521*angle; //77.392 + 31.521*angle;
   
   return elevation;   
 }
 
 // Function calculates horizontal distance to object with trigonometry using current angle and LiDAR reading 
-int horizontal_distance(int angle, int lidar_dist){
+int horizontal_distance (int angle, int lidar_dist){
   double val;
-  val = PI/ 180.0;
-  double distance = (double) lidar_dist * cos((double) angle * val);
-  return round(distance);
+  double distance;
+  val = PI / 180;
+  distance = (double) lidar_dist * cos((double) angle * val);
+  
+  return (int)distance;
 }
 
 // Function returns angle required to hit middle of given input shelf
 int shelf_angle(int shelf_number){
   
   double angle = 0;
-  double shelf_angle = 0;      
+  double shelf_elevation_angle = 0;      
   double max_angle = 0;
-  int round_angle = 0;
   
   if (shelf_number == 0){
     return angle;
   } 
   else{
-    shelf_angle = atan((HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*(shelf_number-1))/(SHELF_DIST - 50.0)) * 180.0/PI;
-    max_angle = atan((HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*(double)shelf_number)/SHELF_DIST) * 180.0/PI;
+    shelf_elevation_angle = atan((HEIGHT_OF_SHELF - HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*((double)shelf_number-1))/(SHELF_DIST - 50.0)) * 180.0/PI;
+    max_angle = atan((HEIGHT_OF_SHELF - HEIGHT_OF_RADAR+HEIGHT_OF_SHELF*(double)shelf_number)/SHELF_DIST) * 180.0/PI;
     
-    if(max_angle < shelf_angle){
-      printf("ERROR, cannot read shelf so return to face down\n");
+    if(max_angle < shelf_elevation_angle){
       return 0;
     }
-    angle = shelf_angle + 0.5 * (max_angle - shelf_angle);
-    return round(angle);
+    angle = shelf_elevation_angle + 0.5 * (max_angle - shelf_elevation_angle);
+    return (int)angle;
   }
 }
   
-*/
+
 
 void PWMinitialise(void){
     // set PP5 and PP7 for pwm output 
@@ -116,4 +117,3 @@ __interrupt void TC6_ISR(void) {
   
   //setServoPose(50 + iterator_counter, 50 + iterator_counter);    
 }
-
