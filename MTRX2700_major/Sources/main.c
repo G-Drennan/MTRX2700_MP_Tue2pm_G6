@@ -70,7 +70,7 @@ void main(void) {
   
   char buffer[128];
       
-  volatile int i, itemNumber,lower_gap_limit, upper_gap_limit, angle, tick;
+  volatile int i, itemNumber,lower_gap_limit, upper_gap_limit, angle, tick, tick2;
     
   unsigned long singleSample;
   double avg, distanceDifference;
@@ -138,7 +138,8 @@ void main(void) {
   //COPCTL = 7;
   _DISABLE_COP();
   
-  tick = 0;  
+  tick = 0;
+  tick2 = 0;  
   for(;;) {
     
     if (item_address == 4 && tick != 1) {
@@ -188,14 +189,16 @@ void main(void) {
       current_item = itemArray[item_address-1];     // update the current item 
       determineOccurence(current_item);  // interpret flags to determine real-world occurence
             
-      if (item_address == 6) {
+      if (item_address == 7 && tick2 == 0) {
     
         SerialInitialise(BAUD_9600, &SCI1);
       
         for (i = 0; i < 6; i++) {
-          sprintf(buffer, "Item %d: %d\r\n",i, itemArray[i]->amount);  
+          sprintf(buffer, "Item %d: %d\r\n",i, itemArray[i]->amount);
+          SerialOutputString(buffer, &SCI1);  
         }
       freeMemory(itemArray, 6);
+      tick2 = 1;
       }
     }
   }
