@@ -53,7 +53,7 @@ Problem faced include
 Problem faced includes
 -----------------------------------------------------------------------------------------------
 develop modules  23/05/22  
-Present: Jack, Antonio, Giaan, Kousha 
+Present: Jack, Antonio, Giaan, Kousha  
 Location: Discord/PNR   
 
 Meeting Purpose:  
@@ -63,7 +63,6 @@ Film final video.
 Problem faced include: 
 
 -----------------------------------------------------------------------------------------------
-d
 
 
 
