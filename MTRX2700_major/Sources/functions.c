@@ -1,19 +1,21 @@
 #include "functions.h"
+#include "servo.h"
     
-unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserArr) {
+double handleLaserValues(unsigned long laserValue, unsigned long *laserArr, int angle) {
 
-  int arrLen = 25;
-  int i, avg, min, max;
+  float arrLen = 25.0;
+  volatile int i, min, max, converted_laser_value;
+  volatile double avg;
   volatile int range;
   for (i = 0; i < arrLen; i++) {
     laserArr[i] = laserArr[i+1];
   }
-  
-  laserArr[arrLen-1] = laserValue;
+  converted_laser_value = horizontal_distance(angle, laserValue);
+  laserArr[(int)arrLen-1] = converted_laser_value;
   
   max = 0;
   min = 10000;
-  avg = 0;
+  avg = 0.0;
 
   for (i = 0; i < arrLen; i++) {
       if (laserArr[i] > max) {
@@ -31,13 +33,7 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
       for (i = 0; i < arrLen; i++) {
         avg = avg + (laserArr[i]/10);
       }
-      
-      if ((avg % arrLen) >= (arrLen/2)) {
-        avg = (avg / arrLen)+1;
-      } 
-      else {
-        avg = avg / arrLen;
-      }
+      avg = avg / arrLen;
       
     }
       
@@ -45,7 +41,7 @@ unsigned long handleLaserValues(unsigned long laserValue, unsigned long *laserAr
     
 }
 
-void determineOccurence(item** itemArray, item* current_item) {
+void determineOccurence(item* current_item) {
       
   if (current_state == prev_state) {
     // nothing has happened yet
@@ -66,7 +62,7 @@ void determineOccurence(item** itemArray, item* current_item) {
 void initialiseInventoryContents(item** itemArray) {
   
   item* current_item;
-  char* names[5] = {"item1", "item2", "item3", "item4","item5"};
+  char* names[6] = {"item1", "item2", "item3", "item4","item5", "item6"};
   int k = 0;
   
   for (k = 0; k < 5; k++) {
@@ -76,3 +72,14 @@ void initialiseInventoryContents(item** itemArray) {
       
   }     
 }
+
+void freeMemory(item** itemArray, int numItems){
+    int i = 0;
+    for(i = 0; i<numItems; i++){
+        free(itemArray[i]);
+    }
+    // Free the pointer to the array
+    free(itemArray);
+
+}
+
