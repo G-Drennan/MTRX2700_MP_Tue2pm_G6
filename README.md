@@ -31,7 +31,6 @@ The project counts the number of gap states to determine the units location rela
 
 ## System Overview
 The PTU used consists of a Lidar sensor, 2 servo motors and an IMU. This will all be controlled using the Dragon 12 Board. To complete the task, the system is divided into 7 modules which includes:
-### Building inventory
 
 ###  Obtaining laser values
 
