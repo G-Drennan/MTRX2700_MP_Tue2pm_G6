@@ -67,7 +67,8 @@ By inputting the command 'list' the user can gain a list in the serial port 1 th
 Any other input causes an error message
 
 This module outputs the inventory list to the serial port 1. It does this through interrupts after the microcontroller has counted the number of each item.
-It takes in the size of the inventory array and assigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
+
+It takes in the size of the inventory array, and the amounts of each item and assigns each item a name from item_0 to max item_9 as the items names are not unique to each product.
 
 **Limitations**
 
